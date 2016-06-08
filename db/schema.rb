@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20160608205618) do
   end
 
   create_table "encounters", force: :cascade do |t|
-    t.integer  "category_id", null: false
-    t.integer  "sector", null: false
+    t.integer  "category_id",   null: false
+    t.integer  "sector",        null: false
     t.string   "grid_position", null: false
-    t.string   "description", null: false
+    t.string   "description",   null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
