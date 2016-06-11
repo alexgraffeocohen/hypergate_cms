@@ -1,0 +1,5 @@
+fighting_the_ai:
+  option: fight_the_ai
+  introduction: "We must fight the A.I. guards and hack the central computer!"
+  success_text: "We beat them!"
+  failure_text: "Everything went horribly wrong"

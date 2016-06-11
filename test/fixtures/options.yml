@@ -1,0 +1,4 @@
+fight_the_ai:
+  encounter: ai_planet
+  text: "Fight the AI"
+  order: 1
