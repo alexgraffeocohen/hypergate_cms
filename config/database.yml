@@ -58,7 +58,7 @@ development:
 test:
   <<: *default
   database: hypergate_cms_test
-  username: hypergate
+  username: hypergate_test
   password: hypergate
 
 # As with config/secrets.yml, you never want to store sensitive information,
