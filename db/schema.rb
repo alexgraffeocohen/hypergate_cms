@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615142449) do
+ActiveRecord::Schema.define(version: 20160615143445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,10 @@ ActiveRecord::Schema.define(version: 20160615142449) do
     t.integer  "response_id",  null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "option_id",    null: false
   end
+
+  add_index "response_skill_checks", ["option_id"], name: "index_response_skill_checks_on_option_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
     t.string   "text",                    null: false
@@ -67,4 +70,5 @@ ActiveRecord::Schema.define(version: 20160615142449) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "response_skill_checks", "options"
 end
