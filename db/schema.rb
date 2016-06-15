@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615151709) do
+ActiveRecord::Schema.define(version: 20160615182859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,29 @@ ActiveRecord::Schema.define(version: 20160615151709) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "requirements", force: :cascade do |t|
+    t.integer  "credits",          default: 0,     null: false
+    t.integer  "ellerium",         default: 0,     null: false
+    t.integer  "wilkinide",        default: 0,     null: false
+    t.integer  "galacite",         default: 0,     null: false
+    t.integer  "plasma_cells",     default: 0,     null: false
+    t.integer  "scrap_metal",      default: 0,     null: false
+    t.integer  "medical_supplies", default: 0,     null: false
+    t.boolean  "refugees",         default: false, null: false
+    t.integer  "option_id",                        null: false
+    t.boolean  "mining_bay",       default: false, null: false
+    t.boolean  "cargo_bay",        default: false, null: false
+    t.boolean  "repair_bay",       default: false, null: false
+    t.boolean  "battery",          default: false, null: false
+    t.boolean  "defense_droid",    default: false, null: false
+    t.boolean  "astrometrics",     default: false, null: false
+    t.boolean  "ship_computer",    default: false, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "requirements", ["option_id"], name: "index_requirements_on_option_id", using: :btree
+
   create_table "response_skill_checks", force: :cascade do |t|
     t.text     "success_text"
     t.text     "failure_text"
@@ -113,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160615151709) do
   add_index "roll_effect_pairs", ["upgrades"], name: "index_roll_effect_pairs_on_upgrades", using: :gin
 
   add_foreign_key "effects", "outcomes"
+  add_foreign_key "requirements", "options"
   add_foreign_key "response_skill_checks", "options"
   add_foreign_key "roll_effect_pairs", "effects"
 end

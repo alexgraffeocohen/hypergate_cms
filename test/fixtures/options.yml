@@ -9,3 +9,9 @@ talk_with_peaceful_population:
   text: "Talk with the peaceful population?"
   order: 1
   result: outcome (Outcome)
+
+trade_the_galacite:
+  encounter: trader
+  text: "Trade them 2 Galacite"
+  order: 1
+  result: outcome (Outcome)

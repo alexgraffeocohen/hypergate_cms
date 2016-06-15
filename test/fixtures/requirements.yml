@@ -1,0 +1,17 @@
+galacite:
+  credits: 0
+  ellerium: 0
+  wilkinide: 0
+  galacite: 2
+  plasma_cells: 0
+  scrap_metal: 0
+  medical_supplies: 0
+  refugees: false
+  option: trade_the_galacite
+  mining_bay: false
+  cargo_bay: false
+  repair_bay: false
+  battery: false
+  defense_droid: false
+  astrometrics: false
+  ship_computer: false
