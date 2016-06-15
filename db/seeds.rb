@@ -19,3 +19,12 @@ Category.create([
   { name: "Other" },
 ])
 
+Role.create([
+  { name: "Communications Officer" },
+  { name: "Weapons Officer" },
+  { name: "Science Officer" },
+  { name: "Medical Officer" },
+  { name: "Engineer" },
+  { name: "Pilot" },
+])
+
