@@ -2,3 +2,10 @@ fight_the_ai:
   encounter: ai_planet
   text: "Fight the AI"
   order: 1
+  result: outcome (Outcome)
+
+talk_with_peaceful_population:
+  encounter: earth_like
+  text: "Talk with the peaceful population?"
+  order: 1
+  result: outcome (Outcome)
