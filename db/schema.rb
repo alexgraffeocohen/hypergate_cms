@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615192115) do
+ActiveRecord::Schema.define(version: 20160615193901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,10 +155,23 @@ ActiveRecord::Schema.define(version: 20160615192115) do
 
   add_index "skill_check_obstacles", ["mission_id"], name: "index_skill_check_obstacles_on_mission_id", using: :btree
 
+  create_table "skill_checks", force: :cascade do |t|
+    t.integer  "role_id",                 null: false
+    t.integer  "skill_check_obstacle_id", null: false
+    t.text     "description",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "skill_checks", ["role_id"], name: "index_skill_checks_on_role_id", using: :btree
+  add_index "skill_checks", ["skill_check_obstacle_id"], name: "index_skill_checks_on_skill_check_obstacle_id", using: :btree
+
   add_foreign_key "effects", "outcomes"
   add_foreign_key "missions", "outcomes"
   add_foreign_key "requirements", "options"
   add_foreign_key "response_skill_checks", "options"
   add_foreign_key "roll_effect_pairs", "effects"
   add_foreign_key "skill_check_obstacles", "missions"
+  add_foreign_key "skill_checks", "roles"
+  add_foreign_key "skill_checks", "skill_check_obstacles"
 end
