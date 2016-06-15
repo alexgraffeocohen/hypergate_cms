@@ -3,7 +3,9 @@
 weapons_officer:
   role_id: <%= Role.find_by(name: "Weapons Officer").id %>
   description: "I can try to blow it up with whatever I've got handy."
+  skill_check_obstacle: locked_door
 
 engineer:
   role_id: <%= Role.find_by(name: "Engineer").id %>
   description: "If the Engineer is here, he can try to hack it open at the nearest terminal"
+  skill_check_obstacle: locked_door
