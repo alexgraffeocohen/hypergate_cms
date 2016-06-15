@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615135526) do
+ActiveRecord::Schema.define(version: 20160615141058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,11 @@ ActiveRecord::Schema.define(version: 20160615135526) do
     t.integer  "order",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "result_id",    null: false
+    t.string   "result_type",  null: false
   end
+
+  add_index "options", ["result_type", "result_id"], name: "index_options_on_result_type_and_result_id", using: :btree
 
   create_table "response_skill_checks", force: :cascade do |t|
     t.text     "success_text"
