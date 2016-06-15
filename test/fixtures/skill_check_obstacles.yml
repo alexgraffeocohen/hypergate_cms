@@ -1,0 +1,4 @@
+locked_door:
+  order: 1
+  description: "Can't get through this damn door!"
+  mission: fight_the_ai
