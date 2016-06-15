@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615145626) do
+ActiveRecord::Schema.define(version: 20160615151709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,27 @@ ActiveRecord::Schema.define(version: 20160615145626) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roll_effect_pairs", force: :cascade do |t|
+    t.numrange "roll_range"
+    t.integer  "roll"
+    t.string   "upgrades",                      array: true
+    t.integer  "credits"
+    t.integer  "ellerium"
+    t.integer  "wilkinide"
+    t.integer  "galacite"
+    t.integer  "plasma_cells"
+    t.integer  "scrap_metal"
+    t.integer  "medical_supplies"
+    t.boolean  "refugees"
+    t.integer  "effect_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "roll_effect_pairs", ["effect_id"], name: "index_roll_effect_pairs_on_effect_id", using: :btree
+  add_index "roll_effect_pairs", ["upgrades"], name: "index_roll_effect_pairs_on_upgrades", using: :gin
+
   add_foreign_key "effects", "outcomes"
   add_foreign_key "response_skill_checks", "options"
+  add_foreign_key "roll_effect_pairs", "effects"
 end
