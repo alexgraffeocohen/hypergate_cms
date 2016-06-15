@@ -13,3 +13,4 @@
 /tmp
 
 /private/*
+.byebug_history
