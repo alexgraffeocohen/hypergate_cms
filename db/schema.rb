@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615144609) do
+ActiveRecord::Schema.define(version: 20160615145626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,22 @@ ActiveRecord::Schema.define(version: 20160615144609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "effects", force: :cascade do |t|
+    t.boolean  "base_effect",   default: true,  null: false
+    t.boolean  "mining_bay",    default: false, null: false
+    t.boolean  "cargo_bay",     default: false, null: false
+    t.boolean  "repair_bay",    default: false, null: false
+    t.boolean  "battery",       default: false, null: false
+    t.boolean  "defense_droid", default: false, null: false
+    t.boolean  "astrometrics",  default: false, null: false
+    t.boolean  "ship_computer", default: false, null: false
+    t.integer  "outcome_id",                    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "effects", ["outcome_id"], name: "index_effects_on_outcome_id", using: :btree
 
   create_table "encounters", force: :cascade do |t|
     t.integer  "category_id",   null: false
@@ -76,5 +92,6 @@ ActiveRecord::Schema.define(version: 20160615144609) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "effects", "outcomes"
   add_foreign_key "response_skill_checks", "options"
 end

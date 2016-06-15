@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  base_effect: true
+  mining_bay: false
+  cargo_bay: false
+  repair_bay: false
+  battery: false
+  defense_droid: false
+  astrometrics: false
+  ship_computer: false
+  outcome_id:
+
+two:
+  base_effect: true
+  mining_bay: false
+  cargo_bay: false
+  repair_bay: false
+  battery: false
+  defense_droid: false
+  astrometrics: false
+  ship_computer: false
+  outcome_id:
