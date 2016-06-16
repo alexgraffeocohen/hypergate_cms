@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mission_id: 
+  role_id: 
+  away_team_mission_id: 
+  response: MyText
+
+two:
+  mission_id: 
+  role_id: 
+  away_team_mission_id: 
+  response: MyText
