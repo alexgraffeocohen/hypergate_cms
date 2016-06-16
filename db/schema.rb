@@ -11,25 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616214321) do
+ActiveRecord::Schema.define(version: 20160616214942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "away_mission_responses", force: :cascade do |t|
     t.integer  "mission_id"
-    t.integer  "role_id",              null: false
-    t.integer  "away_team_mission_id", null: false
-    t.text     "response",             null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "role_id",         null: false
+    t.integer  "away_mission_id", null: false
+    t.text     "response",        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "away_mission_responses", ["away_team_mission_id"], name: "index_away_mission_responses_on_away_team_mission_id", using: :btree
+  add_index "away_mission_responses", ["away_mission_id"], name: "index_away_mission_responses_on_away_mission_id", using: :btree
   add_index "away_mission_responses", ["mission_id"], name: "index_away_mission_responses_on_mission_id", using: :btree
   add_index "away_mission_responses", ["role_id"], name: "index_away_mission_responses_on_role_id", using: :btree
 
-  create_table "away_team_missions", force: :cascade do |t|
+  create_table "away_missions", force: :cascade do |t|
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20160616214321) do
   add_index "skill_checks", ["role_id"], name: "index_skill_checks_on_role_id", using: :btree
   add_index "skill_checks", ["skill_check_obstacle_id"], name: "index_skill_checks_on_skill_check_obstacle_id", using: :btree
 
-  add_foreign_key "away_mission_responses", "away_team_missions"
+  add_foreign_key "away_mission_responses", "away_missions"
   add_foreign_key "away_mission_responses", "missions"
   add_foreign_key "away_mission_responses", "roles"
   add_foreign_key "combat_obstacles", "missions"
