@@ -1,4 +1,3 @@
 fight_the_ai:
   failure_text: "The population must welcome their new AI overlords"
-  description: "We have to fight the AI guards and then try to hack the central intelligence."
   outcome: outcome

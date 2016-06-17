@@ -1,13 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  mission_id: 
-  role_id: 
-  away_team_mission_id: 
-  response: MyText
-
-two:
-  mission_id: 
-  role_id: 
-  away_team_mission_id: 
-  response: MyText
+  mission_id:
+  role_id: <%= Role.find_by(name: "Engineer").id %>
+  away_mission: derelict_ship
+  response: "I can try to hack into security to see if they were holding anything valuable."
