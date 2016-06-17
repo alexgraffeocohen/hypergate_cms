@@ -3,6 +3,7 @@ class Mission < ActiveRecord::Base
   has_many :combat_obstacles
   belongs_to :outcome
 
+  validates_presence_of :failure_text, :outcome
   validate :obstacles_do_not_share_order
 
   def obstacles

@@ -1,5 +1,7 @@
 class RollEffectPair < ActiveRecord::Base
   belongs_to :effect
+
+  validates_presence_of :effect
   validate :roll_range_and_roll_population
 
   private

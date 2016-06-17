@@ -12,6 +12,7 @@ class Effect < ActiveRecord::Base
   belongs_to :outcome
   has_many :roll_effect_pairs
 
+  validates_presence_of :outcome
   validate :cannot_be_base_effect_with_other_requirements
 
   private
