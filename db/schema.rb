@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617165323) do
+ActiveRecord::Schema.define(version: 20160617165613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,18 +155,18 @@ ActiveRecord::Schema.define(version: 20160617165323) do
   create_table "roll_effect_pairs", force: :cascade do |t|
     t.numrange "roll_range"
     t.integer  "roll"
-    t.string   "upgrades",                      array: true
-    t.integer  "credits"
-    t.integer  "ellerium"
-    t.integer  "wilkinide"
-    t.integer  "galacite"
-    t.integer  "plasma_cells"
-    t.integer  "scrap_metal"
-    t.integer  "medical_supplies"
-    t.boolean  "refugees"
-    t.integer  "effect_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "upgrades",                                      array: true
+    t.integer  "credits",          default: 0,     null: false
+    t.integer  "ellerium",         default: 0,     null: false
+    t.integer  "wilkinide",        default: 0,     null: false
+    t.integer  "galacite",         default: 0,     null: false
+    t.integer  "plasma_cells",     default: 0,     null: false
+    t.integer  "scrap_metal",      default: 0,     null: false
+    t.integer  "medical_supplies", default: 0,     null: false
+    t.boolean  "refugees",         default: false, null: false
+    t.integer  "effect_id",                        null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "roll_effect_pairs", ["effect_id"], name: "index_roll_effect_pairs_on_effect_id", using: :btree
