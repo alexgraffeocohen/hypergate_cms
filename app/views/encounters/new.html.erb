@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to("Hypergate", encounters_path, class: "navbar-brand") %>
+        </div>
+
+        <ul class="nav navbar-nav">
+          <li> <%= link_to("All Encounters", encounters_path) %></li>
+          <li class="active"><%= link_to("New Encounter", new_encounter_path) %></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="row">
+    <%= simple_form_for @encounter do |f| %>
+      <%= field_set_tag "Basic" do %>
+        <%= f.input :category, collection: @encounter_presenter.categories %>
+        <%= f.input :description, as: :text, input_html: { rows: 5 } %>
+        <%= f.input :sector, collection: @encounter_presenter.sectors %>
+        <%= f.input :grid_position, collection: @encounter_presenter.grid_positions %>
+      <% end %>
+
+      <%= field_set_tag "Role Responses" do %>
+        <p>
+          The reactions each role has to the encounter description. This could
+          be as detailed or as minimal as necessary, but a paragraph max. Not
+          every role needs to have anything to say. If nothing is filled in for
+          a role, the book will print some default. But the more roles have
+          something to say, the better.
+        </p>
+        <%= f.simple_fields_for :responses  do |responses_form| %>
+          <% @encounter_presenter.response_fields_text.each do |response_field_text| %>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Role</label>
+              <div class="col-sm-10">
+                <p class="form-control-static"><%= response_field_text[:role_name] %></p>
+              </div>
+            </div>
+            <%= responses_form.input response_field_text[:input_name], label: "Response", as: :text, input_html: { rows: 3}, required: false %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
