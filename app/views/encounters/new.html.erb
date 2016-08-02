@@ -19,8 +19,6 @@
       <%= field_set_tag "Basic" do %>
         <%= f.input :category, collection: @encounter_presenter.categories %>
         <%= f.input :description, as: :text, input_html: { rows: 5 } %>
-        <%= f.input :sector, collection: @encounter_presenter.sectors %>
-        <%= f.input :grid_position, collection: @encounter_presenter.grid_positions %>
       <% end %>
 
       <%= field_set_tag "Role Responses" do %>
