@@ -14,7 +14,6 @@ class EncountersController < ApplicationController
     if @encounter.save
       redirect_to encounters_path, notice: "Successfully saved encounter."
     else
-      byebug
       @encounter_presenter = NewEncounterPresenter.new(@encounter)
       render :new
     end
