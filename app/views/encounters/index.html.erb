@@ -19,16 +19,12 @@
       <thead>
         <tr>
           <th class="col-md-2">Category</th>
-          <th class="col-md-1">Sector</th>
-          <th class="col-md-1">Coordinate</th>
           <th class="col-md-8">Description</th>
         </tr>
       <tbody>
         <% @encounters.each do |encounter| %>
           <tr>
             <td><%= encounter.category.name %></td>
-            <td><%= encounter.sector %></td>
-            <td><%= encounter.grid_position %></td>
             <td><%= encounter.description %></td>
           </tr>
         <% end %>
