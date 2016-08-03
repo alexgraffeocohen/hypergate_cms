@@ -11,7 +11,9 @@
           <tr>
             <td><%= encounter.category.name %></td>
             <td><%= encounter.description %></td>
-            <td><%= link_to("Delete", encounter_path(encounter), method: :delete, data: { confirm: "Are you sure?" }) %></td>
+            <td>
+              <%= link_to("Delete", encounter_path(encounter), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }) %>
+            </td>
           </tr>
         <% end %>
       </tbody>
