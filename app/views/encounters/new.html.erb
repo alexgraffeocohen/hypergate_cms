@@ -29,7 +29,7 @@
           a role, the book will print some default. But the more roles have
           something to say, the better.
         </p>
-        <%= f.simple_fields_for :responses  do |responses_form| %>
+        <%= f.simple_fields_for :responses do |responses_form| %>
           <% @encounter_presenter.response_fields_text.each do |response_field_text| %>
             <div class="form-group">
               <label class="col-sm-2 control-label">Role</label>
@@ -41,6 +41,20 @@
           <% end %>
         <% end %>
       <% end %>
+
+      <%= field_set_tag "Options" do %>
+        <%= f.simple_fields_for :options do |options_form| %>
+          <%= options_form.input "1", label: "Option One", required: false %>
+          <%= options_form.input "2", label: "Option Two", required: false %>
+          <%= options_form.input "3", label: "Option Three", required: false %>
+          <%= options_form.input "4", label: "Option Four", required: false %>
+        <% end %>
+      <% end %>
+
+      <div class="pull-right">
+        <a href="<%= encounters_path %>" class="btn btn-default">Cancel</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     <% end %>
   </div>
 </div>
