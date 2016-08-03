@@ -9,6 +9,25 @@
 <body>
 
   <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <%= link_to("Hypergate", encounters_path, class: "navbar-brand") %>
+          </div>
+
+          <ul class="nav navbar-nav">
+            <li class="<%= 'active' if current_page?(encounters_path)%>"> <%= link_to("All Encounters", encounters_path) %></li>
+            <li class="<%= 'active' if current_page?(new_encounter_path)%>"><%= link_to("New Encounter", new_encounter_path) %></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="row">
+      <%= render partial: "layouts/flash_messages" %>
+    </div>
+
     <%= yield %>
   </div>
 
