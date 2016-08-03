@@ -20,12 +20,14 @@
         <tr>
           <th class="col-md-2">Category</th>
           <th class="col-md-8">Description</th>
+          <th class="col-md-2">Actions</th>
         </tr>
       <tbody>
         <% @encounters.each do |encounter| %>
           <tr>
             <td><%= encounter.category.name %></td>
             <td><%= encounter.description %></td>
+            <td><%= link_to("Delete", encounter_path(encounter), method: :delete, data: { confirm: "Are you sure?" }) %></td>
           </tr>
         <% end %>
       </tbody>

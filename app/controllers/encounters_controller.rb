@@ -19,6 +19,18 @@ class EncountersController < ApplicationController
     end
   end
 
+  def destroy
+    @encounter = Encounter.find(params[:id])
+
+    if @encounter.destroy
+      flash[:notice] = "Succesfully destroyed encounter."
+      redirect_to encounters_path
+    else
+      flash[:error] = "Could not destroy encounter."
+      redirect_to encounters_path
+    end
+  end
+
   private
 
   def encounter_params
