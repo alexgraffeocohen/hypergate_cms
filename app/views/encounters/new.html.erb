@@ -1,7 +1,7 @@
 <div class="row">
   <%= simple_form_for @encounter do |f| %>
     <%= field_set_tag "Basic" do %>
-      <%= f.input :category, collection: @encounter_presenter.categories %>
+      <%= f.input :category_id, collection: @encounter_presenter.categories %>
       <%= f.input :description, as: :text, input_html: { rows: 5 } %>
     <% end %>
 

@@ -37,7 +37,7 @@ class EncountersController < ApplicationController
   def encounter_params
     params.
       require(:encounter).
-      permit(:category,
+      permit(:category_id,
              :description,
              responses: ["engineer",
                          "medical officer",

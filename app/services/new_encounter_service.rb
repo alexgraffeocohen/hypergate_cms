@@ -4,7 +4,7 @@ class NewEncounterService
   def initialize(attributes)
     @attributes = attributes
     @encounter = Encounter.new(
-      category: Category.find(attributes[:category]), description: attributes[:description]
+      category: Category.find(attributes[:category_id]), description: attributes[:description]
     )
     encounter.responses = responses
     encounter.options = options
