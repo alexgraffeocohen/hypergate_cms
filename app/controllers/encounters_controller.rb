@@ -20,6 +20,23 @@ class EncountersController < ApplicationController
     end
   end
 
+  def edit
+    @encounter = Encounter.find(params[:id])
+    @encounter_presenter = NewEncounterPresenter.new(@encounter)
+  end
+
+  def update
+    @encounter = Encounter.find(params[:id])
+
+    if @encounter.update_attributes(update_params)
+      flash[:notice] = "Successfully updated encounter."
+      redirect_to encounters_path
+    else
+      flash[:error] = "There was a problem updating this encounter"
+      render :edit
+    end
+  end
+
   def destroy
     @encounter = Encounter.find(params[:id])
 
@@ -46,5 +63,9 @@ class EncountersController < ApplicationController
                          "weapons officer",
                          "communications officer"],
              options: ["1", "2", "3", "4"])
+  end
+
+  def update_params
+    params.require(:encounter).permit(:category_id, :description)
   end
 end

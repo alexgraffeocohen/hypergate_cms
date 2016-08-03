@@ -1,0 +1,43 @@
+<div class="row">
+  <%= simple_form_for @encounter do |f| %>
+    <%= field_set_tag "Basic" do %>
+      <%= f.input :category_id, collection: @encounter_presenter.categories %>
+      <%= f.input :description, as: :text, input_html: { rows: 5 } %>
+    <% end %>
+
+    <%= field_set_tag "Role Responses" do %>
+      <p>
+        The reactions each role has to the encounter description. This could
+        be as detailed or as minimal as necessary, but a paragraph max. Not
+        every role needs to have anything to say. If nothing is filled in for
+        a role, the book will print some default. But the more roles have
+        something to say, the better.
+      </p>
+      <%= f.simple_fields_for :responses do |responses_form| %>
+        <% @encounter_presenter.response_fields_text.each do |response_field_text| %>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Role</label>
+            <div class="col-sm-10">
+              <p class="form-control-static"><%= response_field_text[:role_name] %></p>
+            </div>
+          </div>
+          <%= responses_form.input response_field_text[:input_name], label: "Response", as: :text, input_html: { rows: 3}, required: false %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= field_set_tag "Options" do %>
+      <%= f.simple_fields_for :options do |options_form| %>
+        <%= options_form.input "1", label: "Option One", required: false %>
+        <%= options_form.input "2", label: "Option Two", required: false %>
+        <%= options_form.input "3", label: "Option Three", required: false %>
+        <%= options_form.input "4", label: "Option Four", required: false %>
+      <% end %>
+    <% end %>
+
+    <div class="pull-right">
+      <a href="<%= encounters_path %>" class="btn btn-default">Cancel</a>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  <% end %>
+</div>
