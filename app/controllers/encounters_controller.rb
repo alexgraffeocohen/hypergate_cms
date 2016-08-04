@@ -62,7 +62,7 @@ class EncountersController < ApplicationController
                          "science officer",
                          "weapons officer",
                          "communications officer"],
-             options: ["1", "2", "3", "4"])
+             options_attributes: [:order, :text])
   end
 
   def update_params

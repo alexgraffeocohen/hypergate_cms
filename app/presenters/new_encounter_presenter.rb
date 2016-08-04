@@ -17,4 +17,14 @@ class NewEncounterPresenter
       }
     end
   end
+
+  def options
+    [].tap do |array|
+      array << encounter.options.to_a
+      array.flatten!
+      while array.length < 4 do
+        array << Option.new
+      end
+    end
+  end
 end

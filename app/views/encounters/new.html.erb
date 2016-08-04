@@ -27,11 +27,9 @@
     <% end %>
 
     <%= field_set_tag "Options" do %>
-      <%= f.simple_fields_for :options do |options_form| %>
-        <%= options_form.input "1", label: "Option One", required: false %>
-        <%= options_form.input "2", label: "Option Two", required: false %>
-        <%= options_form.input "3", label: "Option Three", required: false %>
-        <%= options_form.input "4", label: "Option Four", required: false %>
+      <%= f.simple_fields_for :options, @encounter_presenter.options do |options_form| %>
+        <%= options_form.input :order, required: false %>
+        <%= options_form.input :text, required: false %>
       <% end %>
     <% end %>
 
