@@ -6,9 +6,9 @@ class NewEncounterService
     @encounter = Encounter.new(
       category: Category.find(attributes[:category_id]),
       description: attributes[:description],
-      options_attributes: attributes[:options_attributes]
+      options_attributes: attributes[:options_attributes],
+      responses_attributes: attributes[:responses_attributes]
     )
-    @encounter.responses = responses
   end
 
   def save

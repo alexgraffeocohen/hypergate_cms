@@ -56,12 +56,7 @@ class EncountersController < ApplicationController
       require(:encounter).
       permit(:category_id,
              :description,
-             responses: ["engineer",
-                         "medical officer",
-                         "pilot",
-                         "science officer",
-                         "weapons officer",
-                         "communications officer"],
+             responses_attributes: [:role_id, :text],
              options_attributes: [:order, :text])
   end
 
