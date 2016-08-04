@@ -15,7 +15,7 @@
     <%= f.simple_fields_for :responses, @encounter_presenter.responses do |responses_form| %>
       <%= responses_form.input :role_id, as: :hidden %>
       <%= responses_form.association :role, disabled: true %>
-      <%= responses_form.input :text, label: "Response", input_html: { rows: 3 } %>
+      <%= responses_form.input :text, as: :text, label: "Response", input_html: { rows: 3 } %>
     <% end %>
   <% end %>
 
