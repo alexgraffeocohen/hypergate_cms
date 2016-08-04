@@ -1,5 +1,5 @@
 one:
   mission_id:
-  role_id: <%= Role.find_by(name: "Engineer").id %>
+  role_id: engineer
   away_mission: derelict_ship
   response: "I can try to hack into security to see if they were holding anything valuable."

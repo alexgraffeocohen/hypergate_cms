@@ -1,0 +1,12 @@
+engineer:
+  name: "Engineer"
+weapons_officer:
+  name: "Weapons Officer"
+science_officer:
+  name: "Science Officer"
+medical_officer:
+  name: "Medical Officer"
+pilot:
+  name: "Pilot"
+communications_officer:
+  name: "Communications Officer"
