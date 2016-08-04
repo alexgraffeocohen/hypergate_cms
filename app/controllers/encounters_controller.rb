@@ -9,7 +9,7 @@ class EncountersController < ApplicationController
   end
 
   def create
-    @encounter = NewEncounterService.new(encounter_params).encounter
+    @encounter = Encounter.new(encounter_params)
 
     if @encounter.save
       redirect_to encounters_path, notice: "Successfully saved encounter."
