@@ -1,0 +1,4 @@
+engineer:
+  encounter: ai_planet
+  role_id: <%= Role.find_by(name: "Engineer").id %>
+  text: "Let's hack them!"

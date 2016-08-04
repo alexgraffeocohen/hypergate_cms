@@ -28,4 +28,35 @@ class EncounterPresenterTest < ActiveSupport::TestCase
       first.
       text
   end
+
+  test "#responses returns objects for each role" do
+    presenter = EncounterPresenter.new(Encounter.new)
+    assert_equal 6, presenter.responses.length
+  end
+
+  test "#responses returns the same number when the encounter has responses" do
+    encounter = encounters(:ai_planet)
+    presenter = EncounterPresenter.new(encounter)
+
+    assert_equal 6, presenter.responses.length
+  end
+
+  test "#responses returns existing responses on encounter" do
+    encounter = encounters(:ai_planet)
+    presenter = EncounterPresenter.new(encounter)
+
+    assert presenter.
+      responses.
+      select { |response| response.text == "Let's hack them!" }, true
+  end
+
+  test "#responses returns existing responses on encounter first" do
+    encounter = encounters(:ai_planet)
+    presenter = EncounterPresenter.new(encounter)
+
+    assert_equal "Let's hack them!", presenter.
+      responses.
+      first.
+      text
+  end
 end
