@@ -1,11 +1,7 @@
 ai_planet:
   category_id: <%= Category.find_by(name: "Habitable Planet").id %>
-  sector: 1
-  grid_position: "B4"
   description: "We land on a planet overrun by an unbraked AI"
 
 earth_like:
   category_id: <%= Category.find_by(name: "Habitable Planet").id %>
-  sector: 1
-  grid_position: "A1"
   description: "We land on a planet with a peaceful population"
