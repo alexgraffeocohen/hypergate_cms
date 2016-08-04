@@ -28,7 +28,10 @@ class EncountersController < ApplicationController
   def update
     @encounter = Encounter.find(params[:id])
 
-    if @encounter.update_attributes(update_params)
+    @encounter.responses.destroy_all
+    @encounter.options.destroy_all
+
+    if @encounter.update_attributes(encounter_params)
       flash[:notice] = "Successfully updated encounter."
       redirect_to encounters_path
     else
@@ -59,9 +62,5 @@ class EncountersController < ApplicationController
              :description,
              responses_attributes: [:role_id, :text],
              options_attributes: [:order, :text])
-  end
-
-  def update_params
-    params.require(:encounter).permit(:category_id, :description)
   end
 end
