@@ -32,6 +32,7 @@ class EncountersController < ApplicationController
       flash[:notice] = "Successfully updated encounter."
       redirect_to encounters_path
     else
+      @encounter_presenter = EncounterPresenter.new(@encounter)
       flash[:error] = "There was a problem updating this encounter"
       render :edit
     end
