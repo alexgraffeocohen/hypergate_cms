@@ -1,11 +1,8 @@
 class Encounter < ActiveRecord::Base
   belongs_to :category
-  has_many :responses
-  has_many :options
+  belongs_to :starting_event, class_name: Event
   has_one :trigger_event, class_name: Event, inverse_of: :next_encounter
+  has_many :events
 
-  accepts_nested_attributes_for :responses
-  accepts_nested_attributes_for :options
-
-  validates_presence_of :category, :description
+  validates_presence_of :category, :description, :starting_event, :standalone
 end

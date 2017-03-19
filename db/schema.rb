@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319035457) do
+ActiveRecord::Schema.define(version: 20170319055422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,12 @@ ActiveRecord::Schema.define(version: 20170319035457) do
   add_index "effects", ["outcome_id"], name: "index_effects_on_outcome_id", using: :btree
 
   create_table "encounters", force: :cascade do |t|
-    t.integer  "category_id", null: false
-    t.string   "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "category_id",                      null: false
+    t.string   "description",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "starting_event_id",                null: false
+    t.boolean  "standalone",        default: true, null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(version: 20170319035457) do
   add_foreign_key "away_mission_responses", "roles"
   add_foreign_key "combat_obstacles", "missions"
   add_foreign_key "effects", "outcomes"
+  add_foreign_key "encounters", "events", column: "starting_event_id"
   add_foreign_key "events", "encounters"
   add_foreign_key "events", "encounters", column: "next_encounter_id"
   add_foreign_key "missions", "outcomes"
