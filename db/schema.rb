@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804040155) do
+ActiveRecord::Schema.define(version: 20170319035457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 20160804040155) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "events", force: :cascade do |t|
+    t.text     "description",       null: false
+    t.integer  "encounter_id",      null: false
+    t.integer  "next_encounter_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "events", ["encounter_id"], name: "index_events_on_encounter_id", using: :btree
+  add_index "events", ["next_encounter_id"], name: "index_events_on_next_encounter_id", using: :btree
 
   create_table "missions", force: :cascade do |t|
     t.text     "failure_text", null: false
@@ -196,6 +207,8 @@ ActiveRecord::Schema.define(version: 20160804040155) do
   add_foreign_key "away_mission_responses", "roles"
   add_foreign_key "combat_obstacles", "missions"
   add_foreign_key "effects", "outcomes"
+  add_foreign_key "events", "encounters"
+  add_foreign_key "events", "encounters", column: "next_encounter_id"
   add_foreign_key "missions", "outcomes"
   add_foreign_key "requirements", "options"
   add_foreign_key "response_skill_checks", "options"
