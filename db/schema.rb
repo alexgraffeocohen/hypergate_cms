@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319055422) do
+ActiveRecord::Schema.define(version: 20170320225429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,16 +98,17 @@ ActiveRecord::Schema.define(version: 20170319055422) do
   add_index "missions", ["outcome_id"], name: "index_missions_on_outcome_id", using: :btree
 
   create_table "options", force: :cascade do |t|
-    t.integer  "encounter_id"
-    t.text     "text"
-    t.integer  "order"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "result_id"
-    t.string   "result_type"
+    t.text     "text",             null: false
+    t.integer  "order",            null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "event_id",         null: false
+    t.integer  "success_event_id", null: false
+    t.integer  "failure_event_id"
+    t.integer  "required_role_id"
   end
 
-  add_index "options", ["result_type", "result_id"], name: "index_options_on_result_type_and_result_id", using: :btree
+  add_index "options", ["event_id"], name: "index_options_on_event_id", using: :btree
 
   create_table "outcomes", force: :cascade do |t|
     t.text     "description"
@@ -213,6 +214,10 @@ ActiveRecord::Schema.define(version: 20170319055422) do
   add_foreign_key "events", "encounters"
   add_foreign_key "events", "encounters", column: "next_encounter_id"
   add_foreign_key "missions", "outcomes"
+  add_foreign_key "options", "events"
+  add_foreign_key "options", "events", column: "failure_event_id"
+  add_foreign_key "options", "events", column: "success_event_id"
+  add_foreign_key "options", "roles", column: "required_role_id"
   add_foreign_key "requirements", "options"
   add_foreign_key "response_skill_checks", "options"
   add_foreign_key "roll_effect_pairs", "effects"
