@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320225429) do
+ActiveRecord::Schema.define(version: 20170321230309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,16 @@ ActiveRecord::Schema.define(version: 20170320225429) do
   add_index "roll_effect_pairs", ["effect_id"], name: "index_roll_effect_pairs_on_effect_id", using: :btree
   add_index "roll_effect_pairs", ["upgrades"], name: "index_roll_effect_pairs_on_upgrades", using: :gin
 
+  create_table "ship_modules", force: :cascade do |t|
+    t.string   "name",                            null: false
+    t.boolean  "starting_module", default: false, null: false
+    t.integer  "role_id",                         null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "ship_modules", ["role_id"], name: "index_ship_modules_on_role_id", using: :btree
+
   create_table "skill_check_obstacles", force: :cascade do |t|
     t.integer  "order",       default: 1, null: false
     t.text     "description",             null: false
@@ -221,6 +231,7 @@ ActiveRecord::Schema.define(version: 20170320225429) do
   add_foreign_key "requirements", "options"
   add_foreign_key "response_skill_checks", "options"
   add_foreign_key "roll_effect_pairs", "effects"
+  add_foreign_key "ship_modules", "roles"
   add_foreign_key "skill_check_obstacles", "missions"
   add_foreign_key "skill_checks", "roles"
   add_foreign_key "skill_checks", "skill_check_obstacles"
