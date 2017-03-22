@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+crew_sanity:
+  name: "Crew Sanity"
+crew_health:
+  name: "Crew Health"
+ship_systems:
+  name: "Ship Systems"
