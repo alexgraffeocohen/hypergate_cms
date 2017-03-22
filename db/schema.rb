@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322032440) do
+ActiveRecord::Schema.define(version: 20170322040703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,12 +80,14 @@ ActiveRecord::Schema.define(version: 20170322032440) do
   add_index "response_skill_checks", ["option_id"], name: "index_response_skill_checks_on_option_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
-    t.string   "text"
-    t.integer  "role_id"
-    t.integer  "encounter_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "text",       null: false
+    t.integer  "role_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "event_id",   null: false
   end
+
+  add_index "responses", ["role_id"], name: "index_responses_on_role_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       null: false
@@ -125,6 +127,8 @@ ActiveRecord::Schema.define(version: 20170322032440) do
   add_foreign_key "options", "ship_modules", column: "required_module_id"
   add_foreign_key "options", "skill_checks"
   add_foreign_key "response_skill_checks", "options"
+  add_foreign_key "responses", "events"
+  add_foreign_key "responses", "roles"
   add_foreign_key "ship_modules", "roles"
   add_foreign_key "skill_checks", "roles"
 end
