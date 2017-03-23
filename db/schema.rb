@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322233943) do
+ActiveRecord::Schema.define(version: 20170322234634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,15 @@ ActiveRecord::Schema.define(version: 20170322233943) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ship_effect_results", force: :cascade do |t|
+    t.integer  "ship_effect_id", null: false
+    t.integer  "amount",         null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "ship_effect_results", ["ship_effect_id"], name: "index_ship_effect_results_on_ship_effect_id", using: :btree
+
   create_table "ship_effects", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -135,6 +144,7 @@ ActiveRecord::Schema.define(version: 20170322233943) do
   add_foreign_key "response_skill_checks", "options"
   add_foreign_key "responses", "events"
   add_foreign_key "responses", "roles"
+  add_foreign_key "ship_effect_results", "ship_effects"
   add_foreign_key "ship_modules", "roles"
   add_foreign_key "skill_checks", "roles"
 end
