@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   has_many :responses
   has_many :ship_effect_results, through: :event_results
   has_many :event_results
+  has_many :items, through: :item_rewards
+  has_many :item_rewards
 
   validates_presence_of :description, :encounter
 
