@@ -1,7 +1,9 @@
 ai_planet:
-  category_id: <%= Category.find_by(name: "Habitable Planet").id %>
-  description: "We land on a planet overrun by an unbraked AI"
+  category: habitable_planet
+  description: "A planet overrun by an unbraked AI"
+  starting_event: land_on_ai_planet
 
 earth_like:
-  category_id: <%= Category.find_by(name: "Habitable Planet").id %>
-  description: "We land on a planet with a peaceful population"
+  category_id: habitable_planet
+  description: "A planet with a peaceful population"
+  starting_event: land_on_earth_like_planet

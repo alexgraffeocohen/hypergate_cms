@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  role_id: 
-
-two:
-  name: MyString
-  role_id: 
+laser_sword:
+  name: "Laser Sword"
+  role: weapons_officer

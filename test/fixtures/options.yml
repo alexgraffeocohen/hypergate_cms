@@ -1,17 +1,11 @@
 fight_the_ai:
-  encounter: ai_planet
+  event: land_on_ai_planet
   text: "Fight the AI"
   order: 1
-  result: fight_the_ai (Mission)
+  success_event: defeat_the_ai
 
 talk_with_peaceful_population:
-  encounter: earth_like
+  event: land_on_earth_like_planet
   text: "Talk with the peaceful population?"
   order: 1
-  result: outcome (Outcome)
-
-trade_the_galacite:
-  encounter: trader
-  text: "Trade them 2 Galacite"
-  order: 1
-  result: outcome (Outcome)
+  success_event: population_is_nice

@@ -3,9 +3,9 @@
 weapons_officer:
   role: weapons_officer
   description: "I can try to blow it up with whatever I've got handy."
-  skill_check_obstacle: locked_door
+  difficulty: 3
 
 engineer:
   role: engineer
   description: "If the Engineer is here, he can try to hack it open at the nearest terminal"
-  skill_check_obstacle: locked_door
+  difficulty: 5

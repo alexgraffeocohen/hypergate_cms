@@ -1,4 +1,4 @@
 engineer:
-  encounter: ai_planet
-  role_id: <%= Role.find_by(name: "Engineer").id %>
+  event: land_on_ai_planet
+  role: engineer
   text: "Let's hack them!"
