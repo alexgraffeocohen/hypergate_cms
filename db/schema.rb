@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322234634) do
+ActiveRecord::Schema.define(version: 20170323011444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20170322234634) do
     t.integer  "starting_event_id",                null: false
     t.boolean  "standalone",        default: true, null: false
   end
+
+  create_table "event_results", force: :cascade do |t|
+    t.integer  "ship_effect_result_id", null: false
+    t.integer  "event_id",              null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "event_results", ["event_id"], name: "index_event_results_on_event_id", using: :btree
+  add_index "event_results", ["ship_effect_result_id"], name: "index_event_results_on_ship_effect_result_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.text     "description",       null: false
@@ -131,6 +141,8 @@ ActiveRecord::Schema.define(version: 20170322234634) do
   add_index "skill_checks", ["role_id"], name: "index_skill_checks_on_role_id", using: :btree
 
   add_foreign_key "encounters", "events", column: "starting_event_id"
+  add_foreign_key "event_results", "events"
+  add_foreign_key "event_results", "ship_effect_results"
   add_foreign_key "events", "encounters"
   add_foreign_key "events", "encounters", column: "next_encounter_id"
   add_foreign_key "items", "roles"
