@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323022300) do
+ActiveRecord::Schema.define(version: 20170323024144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,16 @@ ActiveRecord::Schema.define(version: 20170323022300) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ship_module_rewards", force: :cascade do |t|
+    t.integer  "ship_module_id", null: false
+    t.integer  "event_id",       null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "ship_module_rewards", ["event_id"], name: "index_ship_module_rewards_on_event_id", using: :btree
+  add_index "ship_module_rewards", ["ship_module_id"], name: "index_ship_module_rewards_on_ship_module_id", using: :btree
+
   create_table "ship_modules", force: :cascade do |t|
     t.string   "name",                            null: false
     t.boolean  "starting_module", default: false, null: false
@@ -169,6 +179,8 @@ ActiveRecord::Schema.define(version: 20170323022300) do
   add_foreign_key "responses", "events"
   add_foreign_key "responses", "roles"
   add_foreign_key "ship_effect_results", "ship_effects"
+  add_foreign_key "ship_module_rewards", "events"
+  add_foreign_key "ship_module_rewards", "ship_modules"
   add_foreign_key "ship_modules", "roles"
   add_foreign_key "skill_checks", "roles"
 end

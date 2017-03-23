@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
   has_many :event_results
   has_many :items, through: :item_rewards
   has_many :item_rewards
+  has_many :ship_modules, through: :ship_module_rewards
+  has_many :ship_module_rewards
 
   validates_presence_of :description, :encounter
 
