@@ -1,5 +1,0 @@
-ai_guards:
-  mission: fight_the_ai
-  description: "We found the guards in front of the AI base. Let's take down these frakking toasters!"
-  enemy_count: 2
-  order: 2

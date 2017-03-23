@@ -1,8 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-roll_effect_pair:
-  effect: base_effect
-
-with_roll:
-  roll: 6
-  effect: base_effect
