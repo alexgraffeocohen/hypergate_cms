@@ -1,2 +1,4 @@
 habitable_planet:
   name: "Habitable Planet"
+gas_planet:
+  name: "Gas Planet"
