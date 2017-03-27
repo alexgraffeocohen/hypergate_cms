@@ -4,5 +4,6 @@ class Encounter < ActiveRecord::Base
   has_one :trigger_event, class_name: Event, inverse_of: :next_encounter
   has_many :events
 
-  validates_presence_of :category, :description, :starting_event, :standalone
+  validates_presence_of :category, :description, :standalone
+  validates_presence_of :starting_event, if: :published
 end
