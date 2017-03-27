@@ -15,7 +15,7 @@ class EncountersController < ApplicationController
       redirect_to encounters_path, notice: "Successfully saved encounter."
     else
       @encounter_presenter = EncounterPresenter.new(@encounter)
-      flash[:error] = "There was a problem saving this encounter."
+      flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
       render :new
     end
   end
