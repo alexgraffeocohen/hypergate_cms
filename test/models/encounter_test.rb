@@ -26,4 +26,10 @@ class EncounterTest < ActiveSupport::TestCase
 
     assert_not(@encounter.published)
   end
+
+  test "standalone defaults to true" do
+    @encounter.save
+
+    assert(@encounter.standalone)
+  end
 end
