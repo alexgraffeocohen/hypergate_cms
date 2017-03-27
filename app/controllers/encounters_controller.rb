@@ -56,11 +56,6 @@ class EncountersController < ApplicationController
   private
 
   def encounter_params
-    params.
-      require(:encounter).
-      permit(:category_id,
-             :description,
-             responses_attributes: [:role_id, :text],
-             options_attributes: [:order, :text])
+    params.require(:encounter).permit(:category_id, :description)
   end
 end
