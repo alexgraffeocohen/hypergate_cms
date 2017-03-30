@@ -1,4 +1,4 @@
-class EncounterPresenter
+class EncounterFormPresenter
   attr_reader :encounter
 
   def initialize(encounter)

@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class EncounterPresenterTest < ActiveSupport::TestCase
+class EncounterFormPresenterTest < ActiveSupport::TestCase
   test "#categories order categories by name" do
     encounter = encounters(:ai_planet)
-    presenter = EncounterPresenter.new(encounter)
+    presenter = EncounterFormPresenter.new(encounter)
 
     categories = Category.all
 
