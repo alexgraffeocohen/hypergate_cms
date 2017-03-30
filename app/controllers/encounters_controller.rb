@@ -28,9 +28,6 @@ class EncountersController < ApplicationController
   def update
     @encounter = Encounter.find(params[:id])
 
-    @encounter.responses.destroy_all
-    @encounter.options.destroy_all
-
     if @encounter.update_attributes(encounter_params)
       flash[:notice] = "Successfully updated encounter."
       redirect_to encounters_path
