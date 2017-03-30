@@ -1,0 +1,16 @@
+<div class="row">
+  <h1>
+    <%= @presenter.title %>
+    <%= link_to("Edit", edit_encounter_path(@presenter.encounter), class: "pull-right btn btn-default") %>
+  </h1>
+
+  <hr />
+
+  <p class="encounter__category">
+    <%= @presenter.category %>
+  </p>
+
+  <p class="encounter__description">
+    <%= @presenter.description %>
+  </p>
+</div>

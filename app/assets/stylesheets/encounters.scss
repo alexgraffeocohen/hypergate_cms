@@ -1,3 +1,12 @@
-// Place all the styles related to the encounters controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+.encounter__category {
+  font-size: 20px;
+  color: $grey;
+}
+
+.encounter__description {
+  font-size: 16px;
+  line-height: 24px;
+  padding-right: 200px;
+}

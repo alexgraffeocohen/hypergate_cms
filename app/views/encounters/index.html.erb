@@ -11,7 +11,7 @@
         <% @encounters.each do |encounter| %>
           <% presenter = EncounterPresenter.new(encounter) %>
           <tr>
-            <td><%= presenter.title %></td>
+            <td><%= link_to(presenter.title, encounter_path(encounter)) %></td>
             <td><%= presenter.category %></td>
             <td><%= presenter.description %></td>
             <td>

@@ -3,6 +3,11 @@ class EncountersController < ApplicationController
     @encounters = Encounter.all
   end
 
+  def show
+    encounter = Encounter.find(params[:id])
+    @presenter = EncounterPresenter.new(encounter)
+  end
+
   def new
     @encounter = Encounter.new
     @encounter_presenter = EncounterFormPresenter.new(@encounter)
