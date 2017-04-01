@@ -1,7 +1,7 @@
 <h1>New Event</h1>
 <hr />
 
-<%= simple_form_for [:encounter, @presenter.event] do |f| %>
+<%= simple_form_for [@presenter.encounter, @presenter.event] do |f| %>
   <%= f.input :description, as: :text, input_html: { rows: 5 } %>
 
   <div class="pull-right">
