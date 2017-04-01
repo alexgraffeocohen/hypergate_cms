@@ -59,4 +59,11 @@ class EventPresenterTest < ActiveSupport::TestCase
       first.
       text
   end
+
+  test "#encounter returns event's encounter" do
+    event = events(:land_on_ai_planet)
+    presenter = EventPresenter.new(event)
+
+    assert_equal presenter.encounter, event.encounter
+  end
 end
