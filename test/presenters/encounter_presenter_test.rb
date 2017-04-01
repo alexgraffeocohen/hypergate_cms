@@ -40,4 +40,11 @@ class EncounterPresenterTest < ActiveSupport::TestCase
 
     assert_includes(@presenter.events, event)
   end
+
+  test "#starting_event returns encounter's starting event" do
+    event = events(:land_on_ai_planet)
+    @encounter.starting_event = event
+
+    assert_equal(@presenter.starting_event, event)
+  end
 end
