@@ -33,4 +33,11 @@ class EncounterPresenterTest < ActiveSupport::TestCase
 
     assert_equal(@presenter.description, "A Description")
   end
+
+  test "#events returns encounter's events" do
+    event = events(:land_on_ai_planet)
+    @encounter.events << event
+
+    assert_includes(@presenter.events, event)
+  end
 end

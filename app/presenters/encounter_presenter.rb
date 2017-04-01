@@ -17,6 +17,10 @@ class EncounterPresenter
     encounter.description
   end
 
+  def events
+    encounter.events
+  end
+
   private
 
   def default_title
