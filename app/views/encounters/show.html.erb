@@ -1,7 +1,11 @@
 <div class="row">
   <h1>
     <%= @presenter.title %>
-    <%= link_to("Edit", edit_encounter_path(@presenter.encounter), class: "pull-right btn btn-default") %>
+
+    <div class="encounter__actions pull-right">
+      <%= link_to("New Event", new_encounter_event_path(@presenter.encounter), class: "btn btn-success") %>
+      <%= link_to("Edit", edit_encounter_path(@presenter.encounter), class: "btn btn-default") %>
+    </div>
   </h1>
 
   <hr />
@@ -13,4 +17,10 @@
   <p class="encounter__description">
     <%= @presenter.description %>
   </p>
+</div>
+
+<div class="row encounter__events">
+  <ul>
+    <%= render @presenter.events %>
+  </ul>
 </div>
