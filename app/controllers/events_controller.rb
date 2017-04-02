@@ -6,16 +6,9 @@ class EventsController < ApplicationController
 
   def create
     event = Event.new(event_params)
+    service = CreateEvent.new(event: event, encounter: encounter)
 
-    if event.save
-      if encounter.events.count == 1
-        if !encounter.update_attribute(:starting_event_id, event.id)
-          @event_presenter = EventPresenter.new(event)
-          flash[:error] = "There was a problem saving this event: #{event.errors.messages}"
-          render :new
-        end
-      end
-
+    if service.save
       redirect_to encounter_path(encounter), notice: "Successfully saved event."
     else
       @event_presenter = EventPresenter.new(event)
