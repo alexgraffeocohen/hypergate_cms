@@ -7,3 +7,7 @@ earth_like:
   category_id: habitable_planet
   description: "A planet with a peaceful population"
   starting_event: land_on_earth_like_planet
+
+no_events:
+  category_id: habitable_planet
+  description: "No events yet"
