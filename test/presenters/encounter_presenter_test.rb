@@ -1,18 +1,50 @@
 require 'test_helper'
 
 class EncounterPresenterTest < ActiveSupport::TestCase
-  test "#categories order categories by name" do
-    encounter = encounters(:ai_planet)
-    presenter = EncounterPresenter.new(encounter)
+  def setup
+    @encounter = encounters(:ai_planet)
+    @presenter = EncounterPresenter.new(@encounter)
+  end
 
-    categories = Category.all
+  test "#title displays encounter title when it's not nil" do
+    @encounter.title = "AI Planet"
 
-    assert_equal(categories.first, categories(:habitable_planet))
-    assert_equal(categories.second, categories(:gas_planet))
+    assert_equal(@presenter.title, "AI Planet")
+  end
 
-    presented_categories = presenter.categories
+  test "#title has a default when encounter title is nil" do
+    @encounter.title = nil
+    @encounter.category = categories(:habitable_planet)
 
-    assert_equal(presented_categories.first, categories(:gas_planet))
-    assert_equal(presented_categories.second, categories(:habitable_planet))
+    assert_equal(
+      @presenter.title,
+      "Encounter ##{@encounter.id}"
+    )
+  end
+
+  test "#category displays encounter category in title case" do
+    @encounter.category = categories(:habitable_planet)
+
+    assert_equal(@presenter.category, "Habitable Planet")
+  end
+
+  test "#description displays encounter description" do
+    @encounter.description = "A Description"
+
+    assert_equal(@presenter.description, "A Description")
+  end
+
+  test "#events returns encounter's events" do
+    event = events(:land_on_ai_planet)
+    @encounter.events << event
+
+    assert_includes(@presenter.events, event)
+  end
+
+  test "#starting_event returns encounter's starting event" do
+    event = events(:land_on_ai_planet)
+    @encounter.starting_event = event
+
+    assert_equal(@presenter.starting_event, event)
   end
 end

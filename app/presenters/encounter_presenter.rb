@@ -5,7 +5,29 @@ class EncounterPresenter
     @encounter = encounter
   end
 
-  def categories
-    Category.all.order(:name)
+  def title
+    encounter.title || default_title
+  end
+
+  def category
+    encounter.category.name.titleize
+  end
+
+  def description
+    encounter.description
+  end
+
+  def events
+    encounter.events
+  end
+
+  def starting_event
+    encounter.starting_event
+  end
+
+  private
+
+  def default_title
+    "Encounter ##{encounter.id}"
   end
 end

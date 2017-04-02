@@ -5,6 +5,10 @@ class EventPresenter
     @event = event
   end
 
+  def encounter
+    event.encounter
+  end
+
   def response_fields_text
     Role.order(:name).each_with_object([]) do |role, array|
       array << {

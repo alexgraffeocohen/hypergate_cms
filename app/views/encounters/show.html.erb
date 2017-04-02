@@ -1,0 +1,28 @@
+<div class="row">
+  <h1>
+    <%= @presenter.title %>
+
+    <div class="encounter__actions pull-right">
+      <%= link_to("New Event", new_encounter_event_path(@presenter.encounter), class: "btn btn-success") %>
+      <%= link_to("Edit", edit_encounter_path(@presenter.encounter), class: "btn btn-default") %>
+    </div>
+  </h1>
+
+  <hr />
+
+  <p class="encounter__category">
+    <%= @presenter.category %>
+  </p>
+
+  <p class="encounter__description">
+    <%= @presenter.description %>
+  </p>
+</div>
+
+<div class="row encounter__events">
+  <% if @presenter.starting_event %>
+    <ul>
+      <%= render @presenter.starting_event %>
+    </ul>
+  <% end %>
+</div>

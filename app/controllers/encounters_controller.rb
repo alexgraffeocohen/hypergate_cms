@@ -3,9 +3,14 @@ class EncountersController < ApplicationController
     @encounters = Encounter.all
   end
 
+  def show
+    encounter = Encounter.find(params[:id])
+    @presenter = EncounterPresenter.new(encounter)
+  end
+
   def new
     @encounter = Encounter.new
-    @encounter_presenter = EncounterPresenter.new(@encounter)
+    @encounter_presenter = EncounterFormPresenter.new(@encounter)
   end
 
   def create
@@ -14,7 +19,7 @@ class EncountersController < ApplicationController
     if @encounter.save
       redirect_to encounters_path, notice: "Successfully saved encounter."
     else
-      @encounter_presenter = EncounterPresenter.new(@encounter)
+      @encounter_presenter = EncounterFormPresenter.new(@encounter)
       flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
       render :new
     end
@@ -22,14 +27,11 @@ class EncountersController < ApplicationController
 
   def edit
     @encounter = Encounter.find(params[:id])
-    @encounter_presenter = EncounterPresenter.new(@encounter)
+    @encounter_presenter = EncounterFormPresenter.new(@encounter)
   end
 
   def update
     @encounter = Encounter.find(params[:id])
-
-    @encounter.responses.destroy_all
-    @encounter.options.destroy_all
 
     if @encounter.update_attributes(encounter_params)
       flash[:notice] = "Successfully updated encounter."
