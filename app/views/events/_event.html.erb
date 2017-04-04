@@ -11,13 +11,15 @@
       </div>
       <div class="panel-footer">
         <div class="btn-group">
-          <button type="button" class="btn btn-success">Add Option</button>
+          <%= link_to "Add Option", new_encounter_event_option_path(event.encounter, event), class: "btn btn-success" %>
           <%= link_to "Edit Event", edit_encounter_event_path(event.encounter, event), class: "btn btn-default" %>
         </div>
       </div>
     </div>
-    <ul>
-      <%= render event.options %>
-    </ul>
+    <div class="row">
+      <ul>
+        <%= render event.options %>
+      </ul>
+    </div>
   </li>
 </div>
