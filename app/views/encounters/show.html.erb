@@ -21,8 +21,10 @@
 
 <div class="row encounter__events">
   <% if @presenter.starting_event %>
-    <ul>
-      <%= render @presenter.starting_event %>
-    </ul>
+    <div class="row">
+      <ul>
+        <%= render @presenter.starting_event %>
+      </ul>
+    </div>
   <% end %>
 </div>
