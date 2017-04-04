@@ -10,8 +10,13 @@
     </div>
     <div class="panel-footer">
       <div class="btn-group">
-        <%= link_to "Edit Option", edit_encounter_event_option_path(option.event, option.event.encounter, option), class: "btn btn-default" %>
+        <%= link_to "+ Success", new_encounter_event_option_success_event_path(option, option.event, option.event.encounter), class: "btn btn-success" %>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <ul>
+      <%= render option.success_event if option.success_event %>
+    </ul>
   </div>
 </li>
