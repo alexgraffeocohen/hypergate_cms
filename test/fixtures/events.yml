@@ -7,6 +7,10 @@ defeat_the_ai:
   encounter: ai_planet
   description: "The population rejoices!"
 
+killed_by_the_ai:
+  encounter: ai_planet
+  description: "The AI dismanted your party."
+
 land_on_earth_like_planet:
   encounter: earth_like
   description: "We encounter the population up ahead in a clearing."

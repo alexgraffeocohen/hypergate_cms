@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :events, except: [:index] do
       resources :options, except: [:index] do
         resources :success_events, only: [:new, :create]
+        resources :failure_events, only: [:new, :create]
       end
     end
   end
