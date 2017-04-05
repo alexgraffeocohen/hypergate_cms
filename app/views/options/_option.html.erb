@@ -10,8 +10,8 @@
     </div>
     <div class="panel-footer">
       <div class="btn-group">
-        <%= link_to "+ Success", new_encounter_event_option_success_event_path(option, option.event, option.event.encounter), class: "btn btn-success" %>
-        <%= link_to "+ Failure", new_encounter_event_option_failure_event_path(option, option.event, option.event.encounter), class: "btn btn-danger" %>
+        <%= link_to "+ Success", new_encounter_event_option_success_event_path(option.event.encounter, option.event, option), class: "btn btn-success" %>
+        <%= link_to "+ Failure", new_encounter_event_option_failure_event_path(option.event.encounter, option.event, option), class: "btn btn-danger" %>
       </div>
     </div>
   </div>
