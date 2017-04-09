@@ -35,6 +35,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    event = Event.find(params[:id])
+
+    if event.destroy
+      flash[:notice] = "Succesfully destroyed event."
+      redirect_to encounter_path(encounter)
+    else
+      @event_presenter = EventPresenter.new(event)
+      flash[:error] = "Could not destroy event."
+      render :edit
+    end
+  end
+
   private
 
   def event_params

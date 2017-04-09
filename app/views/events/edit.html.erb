@@ -1,4 +1,10 @@
-<h1>Edit Event</h1>
+<h1>
+  Edit Event
+
+  <div class="encounter__actions pull-right">
+    <%= link_to("Delete", encounter_event_path(@presenter.encounter, @presenter.event), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure? This will delete all associated options and their events." }) %>
+  </div>
+</h1>
 <hr />
 
 <div class="row">
