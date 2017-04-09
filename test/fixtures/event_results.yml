@@ -1,0 +1,3 @@
+failing_to_defeat_the_ai_hurts_crew_sanity:
+  ship_effect_result: hurt_crew_sanity
+  event: cannot_defeat_the_ai

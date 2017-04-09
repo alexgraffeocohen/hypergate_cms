@@ -1,0 +1,3 @@
+win_laser_sword:
+  item: laser_sword
+  event: defeat_the_ai
