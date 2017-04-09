@@ -66,4 +66,18 @@ class EventPresenterTest < ActiveSupport::TestCase
 
     assert_equal presenter.encounter, event.encounter
   end
+
+  test "#starting_event? when event is starting event" do
+    event = events(:land_on_ai_planet)
+    presenter = EventPresenter.new(event)
+
+    assert(presenter.starting_event?)
+  end
+
+  test "#starting_event? when event is not starting event" do
+    event = events(:defeat_the_ai)
+    presenter = EventPresenter.new(event)
+
+    assert_not(presenter.starting_event?)
+  end
 end

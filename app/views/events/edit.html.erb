@@ -2,7 +2,19 @@
   Edit Event
 
   <div class="encounter__actions pull-right">
-    <%= link_to("Delete", encounter_event_path(@presenter.encounter, @presenter.event), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure? This will delete all associated options and their events." }) %>
+    <% unless @presenter.starting_event? %>
+      <%= link_to("Delete",
+                  encounter_event_path(@presenter.encounter, @presenter.event),
+                  method: :delete,
+                  class: "btn btn-danger",
+                  data: { confirm: "Are you sure? This will delete all associated options and their events." }) %>
+    <% else %>
+      <div class="tooltip-wrapper" data-toggle="tooltip" data-placement="left" data-title="Cannot delete starting event of Encounter.">
+        <button class="btn btn-danger" disabled>
+          Delete
+        </button>
+      </div>
+    <% end %>
   </div>
 </h1>
 <hr />

@@ -41,4 +41,8 @@ class EventPresenter
       end
     end
   end
+
+  def starting_event?
+    encounter.starting_event == event
+  end
 end
