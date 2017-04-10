@@ -58,6 +58,6 @@ class EncountersController < ApplicationController
   private
 
   def encounter_params
-    params.require(:encounter).permit(:category_id, :description)
+    params.require(:encounter).permit(:category_id, :title, :description)
   end
 end
