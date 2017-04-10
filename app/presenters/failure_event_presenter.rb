@@ -1,8 +1,8 @@
-class OptionEventPresenter
-  attr_reader :option, :success_event
+class FailureEventPresenter
+  attr_reader :option, :failure_event
 
   def initialize(event:, option:)
-    @success_event = event
+    @failure_event = event
     @option = option
   end
 

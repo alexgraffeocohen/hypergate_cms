@@ -1,7 +1,7 @@
 class FailureEventsController < ApplicationController
   def new
     event = Event.new(encounter: encounter)
-    @presenter = OptionEventPresenter.new(event: event, option: option)
+    @presenter = FailureEventPresenter.new(event: event, option: option)
   end
 
   def create
@@ -14,7 +14,7 @@ class FailureEventsController < ApplicationController
     if service.save
       redirect_to encounter_path(encounter), notice: "Successfully saved event."
     else
-      @presenter = OptionEventPresenter.new(event: event, option: option)
+      @presenter = FailureEventPresenter.new(event: event, option: option)
       flash[:error] = "There was a problem saving this event: #{event.errors.messages}"
       render :new
     end
