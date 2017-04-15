@@ -1,3 +1,12 @@
+<h1>
+  Edit Option
+
+  <div class="resource__actions pull-right">
+    <%= link_to "Delete", encounter_event_option_path(@presenter.encounter, @presenter.event, @presenter.option), method: :delete, class: "btn btn-danger" %>
+  </div>
+</h1>
+<hr />
+
 <div class="row">
   <%= render partial: "form" %>
 </div>
