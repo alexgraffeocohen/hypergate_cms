@@ -1,9 +1,11 @@
 <li>
-  <div class="encounter__tree_node">
-    <h4>
-      <%= link_to "Event", edit_encounter_event_path(event.encounter, event) %>
-    </h4>
-    <%= link_to "+", new_encounter_event_option_path(event.encounter, event), class: "btn btn-success" %>
+  <div class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-title="<%= event.description.truncate_words(30) %>">
+    <div class="encounter__tree_node">
+      <h4>
+        <%= link_to "Event", edit_encounter_event_path(event.encounter, event) %>
+      </h4>
+      <%= link_to "+", new_encounter_event_option_path(event.encounter, event), class: "btn btn-success" %>
+    </div>
   </div>
   <ul>
     <%= render event.options %>

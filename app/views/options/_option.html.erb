@@ -1,11 +1,13 @@
 <li>
-  <div class="encounter__tree_node">
-    <h4>
-      <%= link_to "Option", edit_encounter_event_option_path(option.event, option.event.encounter, option) %>
-    </h4>
-    <div class="btn-group">
-      <%= link_to "+", new_encounter_event_option_success_event_path(option.event.encounter, option.event, option), class: "btn btn-success" %>
-      <%= link_to "+", new_encounter_event_option_failure_event_path(option.event.encounter, option.event, option), class: "btn btn-danger" %>
+  <div class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-title="<%= option.text.truncate_words(30) %>">
+    <div class="encounter__tree_node">
+      <h4>
+        <%= link_to "Option", edit_encounter_event_option_path(option.event, option.event.encounter, option) %>
+      </h4>
+      <div class="btn-group">
+        <%= link_to "+", new_encounter_event_option_success_event_path(option.event.encounter, option.event, option), class: "btn btn-success" %>
+        <%= link_to "+", new_encounter_event_option_failure_event_path(option.event.encounter, option.event, option), class: "btn btn-danger" %>
+      </div>
     </div>
   </div>
 
