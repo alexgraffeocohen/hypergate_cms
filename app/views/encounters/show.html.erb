@@ -1,24 +1,22 @@
-<div class="row">
-  <h1>
-    <%= @presenter.title %>
+<h1>
+  <%= @presenter.title %>
 
-    <div class="resource__actions pull-right">
-      <%= link_to("Create Starting Event", new_encounter_event_path(@presenter.encounter), class: "btn btn-success") unless @presenter.encounter.starting_event %>
-      <%= link_to("Edit", edit_encounter_path(@presenter.encounter), class: "btn btn-default") %>
-      <%= link_to("Delete", encounter_path(@presenter.encounter), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure? This will delete all associated events." }) %>
-    </div>
-  </h1>
+  <div class="resource__actions pull-right">
+    <%= link_to("Create Starting Event", new_encounter_event_path(@presenter.encounter), class: "btn btn-success") unless @presenter.encounter.starting_event %>
+    <%= link_to("Edit", edit_encounter_path(@presenter.encounter), class: "btn btn-default") %>
+    <%= link_to("Delete", encounter_path(@presenter.encounter), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure? This will delete all associated events." }) %>
+  </div>
+</h1>
 
-  <hr />
+<hr />
 
-  <p class="encounter__category">
-    <%= @presenter.category %>
-  </p>
+<p class="encounter__category">
+  <%= @presenter.category %>
+</p>
 
-  <p class="encounter__description">
-    <%= @presenter.description %>
-  </p>
-</div>
+<p class="encounter__description">
+  <%= @presenter.description %>
+</p>
 
 <div class="encounter__events">
   <% if @presenter.starting_event %>
