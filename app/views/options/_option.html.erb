@@ -1,24 +1,16 @@
 <li>
-  <div class="panel panel-default encounter__option">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= link_to "Option", edit_encounter_event_option_path(option.event, option.event.encounter, option) %>
-      </h3>
-    </div>
-    <div class="panel-body">
-      <%= option.text %>
-    </div>
-    <div class="panel-footer">
-      <div class="btn-group">
-        <%= link_to "+ Success", new_encounter_event_option_success_event_path(option.event.encounter, option.event, option), class: "btn btn-success" %>
-        <%= link_to "+ Failure", new_encounter_event_option_failure_event_path(option.event.encounter, option.event, option), class: "btn btn-danger" %>
-      </div>
+  <div class="encounter__tree_node">
+    <h4>
+      <%= link_to "Option", edit_encounter_event_option_path(option.event, option.event.encounter, option) %>
+    </h4>
+    <div class="btn-group">
+      <%= link_to "+", new_encounter_event_option_success_event_path(option.event.encounter, option.event, option), class: "btn btn-success" %>
+      <%= link_to "+", new_encounter_event_option_failure_event_path(option.event.encounter, option.event, option), class: "btn btn-danger" %>
     </div>
   </div>
-  <div class="row">
-    <ul>
-      <%= render option.success_event if option.success_event %>
-      <%= render option.failure_event if option.failure_event %>
-    </ul>
-  </div>
+
+  <ul>
+    <%= render option.success_event if option.success_event %>
+    <%= render option.failure_event if option.failure_event %>
+  </ul>
 </li>

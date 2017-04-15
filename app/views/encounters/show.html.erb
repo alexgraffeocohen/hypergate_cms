@@ -20,12 +20,10 @@
   </p>
 </div>
 
-<div class="row encounter__events">
+<div class="encounter__events">
   <% if @presenter.starting_event %>
-    <div class="row">
-      <ul>
-        <%= render @presenter.starting_event %>
-      </ul>
-    </div>
+    <ul>
+      <%= render @presenter.starting_event %>
+    </ul>
   <% end %>
 </div>

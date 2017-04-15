@@ -1,23 +1,11 @@
-<li class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= link_to "Event", edit_encounter_event_path(event.encounter, event) %>
-      </h3>
-    </div>
-    <div class="panel-body">
-      <%= event.description %>
-    </div>
-    <div class="panel-footer">
-      <div class="btn-group">
-        <%= link_to "Add Option", new_encounter_event_option_path(event.encounter, event), class: "btn btn-success" %>
-        <%= link_to "Edit Event", edit_encounter_event_path(event.encounter, event), class: "btn btn-default" %>
-      </div>
-    </div>
+<li>
+  <div class="encounter__tree_node">
+    <h4>
+      <%= link_to "Event", edit_encounter_event_path(event.encounter, event) %>
+    </h4>
+    <%= link_to "+", new_encounter_event_option_path(event.encounter, event), class: "btn btn-success" %>
   </div>
-  <div class="row">
-    <ul>
-      <%= render event.options %>
-    </ul>
-  </div>
+  <ul>
+    <%= render event.options %>
+  </ul>
 </li>
