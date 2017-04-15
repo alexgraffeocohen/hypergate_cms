@@ -2,6 +2,7 @@
   Edit Event
 
   <div class="resource__actions pull-right">
+    <%= link_to "Add Option", new_encounter_event_option_path(@presenter.encounter, @presenter.event), class: "btn btn-success" %>
     <% unless @presenter.starting_event? %>
       <%= link_to("Delete",
                   encounter_event_path(@presenter.encounter, @presenter.event),
