@@ -38,10 +38,10 @@ class OptionsController < ApplicationController
 
     if @option.destroy
       flash[:notice] = "Succesfully destroyed option."
-      redirect_to encounters_path
+      redirect_to encounter
     else
       flash[:error] = "Could not destroy option."
-      redirect_to encounters_path
+      redirect_to encounter
     end
   end
 
