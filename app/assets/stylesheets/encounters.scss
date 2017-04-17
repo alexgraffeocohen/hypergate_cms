@@ -11,6 +11,18 @@
   padding-right: 200px;
 }
 
+.encounter__success-event {
+  background-color: rgba(128, 152, 88, 0.5);
+}
+
+.encounter__failure-event {
+  background-color: rgba(212, 76, 72, 0.5);
+}
+
+.encounter__success-event-title, .encounter__failure-event-title {
+  color: $white;
+}
+
 /* Adapted from http://thecodeplayer.com/walkthrough/css3-family-tree */
 
 .encounter__events ul {

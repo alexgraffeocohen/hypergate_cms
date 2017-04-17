@@ -21,7 +21,12 @@
 <div class="encounter__events">
   <% if @presenter.starting_event %>
     <ul>
-      <%= render @presenter.starting_event %>
+      <%= render partial: "events/event",
+        locals: {
+        event: @presenter.starting_event,
+        title_class: "",
+        container_class: ""
+      } %>
     </ul>
   <% end %>
 </div>

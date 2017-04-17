@@ -12,7 +12,17 @@
   </div>
 
   <ul>
-    <%= render option.success_event if option.success_event %>
-    <%= render option.failure_event if option.failure_event %>
+    <%= render partial: "events/event",
+      locals: {
+      event: option.success_event,
+      title_class: "encounter__success-event-title",
+      container_class: "encounter__success-event"
+    } if option.success_event %>
+    <%= render partial: "events/event",
+      locals: {
+      event: option.failure_event,
+      title_class: "encounter__failure-event-title",
+      container_class: "encounter__failure-event"
+    } if option.failure_event %>
   </ul>
 </li>
