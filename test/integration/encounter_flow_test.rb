@@ -9,6 +9,7 @@ class EncounterFlowTest < ActionDispatch::IntegrationTest
 
     post "/encounters/#{encounter.id}/events",
       { event: { description: "test" } }
+    assert_redirected_to encounter
 
     encounter.reload
     starting_event = encounter.starting_event
@@ -16,13 +17,13 @@ class EncounterFlowTest < ActionDispatch::IntegrationTest
     assert_equal(starting_event.description, "test")
   end
 
-  test "adding an event with roles" do
+  test "adding an event with role responses" do
     encounter = encounters(:ai_planet)
     role = roles(:engineer)
     role_text = "That was crazy!"
 
     post "/encounters/#{encounter.id}/events",
-      { event: { description: "test", responses_attributes: [{role_id: role.id, text: role_text}] }  }
+      { event: { description: "test", responses_attributes: { "0" => {role_id: role.id, text: role_text}}}}
     assert_redirected_to encounter
 
     event = Event.where(description: "test").last
