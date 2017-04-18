@@ -23,5 +23,4 @@ class Event < ActiveRecord::Base
   validates_presence_of :description, :encounter
 
   accepts_nested_attributes_for :responses
-  accepts_nested_attributes_for :options
 end
