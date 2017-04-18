@@ -24,8 +24,9 @@ class EventsController < ApplicationController
 
   def update
     event = Event.find(params[:id])
+    service = UpdateEvent.new(event, event_params)
 
-    if event.update_attributes(event_params)
+    if service.save
       flash[:notice] = "Successfully updated event."
       redirect_to encounter_path(encounter)
     else
@@ -53,7 +54,7 @@ class EventsController < ApplicationController
   def event_params
     params.
       require(:event).
-      permit(:description).
+      permit(:description, responses_attributes: [:role_id, :text]).
       merge(encounter_id: encounter_id)
   end
 
