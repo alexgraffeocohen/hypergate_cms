@@ -1,5 +1,5 @@
 <li>
-  <div class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" data-title="<%= event.description.truncate_words(30) %>">
+  <div class="tooltip-wrapper" data-toggle="tooltip" data-placement="right" data-title="<%= event.description.truncate_words(20) %>">
     <div class="encounter__tree_node <%= container_class %>">
       <h4>
         <%= link_to "Event", edit_encounter_event_path(event.encounter, event), class: title_class %>
