@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     if service.save
       redirect_to encounter_path(encounter), notice: "Successfully saved event."
     else
-      @event_presenter = EventPresenter.new(event)
+      @presenter = EventPresenter.new(event)
       flash[:error] = "There was a problem saving this event: #{event.errors.messages}"
       render :new
     end
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
       flash[:notice] = "Successfully updated event."
       redirect_to encounter_path(encounter)
     else
-      @event_presenter = EncounterPresenter.new(event)
+      @presenter = EventPresenter.new(event)
       flash[:error] = "There was a problem saving this event: #{event.errors.messages}"
       render :edit
     end
