@@ -7,20 +7,19 @@ class CreateFailureEventTest < ActiveSupport::TestCase
       description: "We were victorious!",
       encounter: @encounter
     )
-  end
-
-  test "associates event as option failure event" do
-    option = Option.new(
+    @option = Option.new(
       text: "Re-program the robots",
       order: 3,
       event: @encounter.starting_event
     )
-    option.save
+    @option.save
+  end
 
-    subject = CreateFailureEvent.new(event: @failure_event, option: option)
+  test "associates event as option failure event" do
+    subject = CreateFailureEvent.new(event: @failure_event, option: @option)
 
     assert(subject.save)
-    assert_equal(option.failure_event, @failure_event)
+    assert_equal(@option.failure_event, @failure_event)
   end
 
   test "fails if option already has a failure event" do
