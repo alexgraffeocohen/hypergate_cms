@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     else
       @presenter = EventPresenter.new(event)
       flash[:error] = "There was a problem saving this event: #{event.errors.messages}"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
     else
       @presenter = EventPresenter.new(event)
       flash[:error] = "There was a problem saving this event: #{event.errors.messages}"
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

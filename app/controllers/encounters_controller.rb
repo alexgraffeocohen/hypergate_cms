@@ -21,7 +21,7 @@ class EncountersController < ApplicationController
     else
       @encounter_presenter = EncounterFormPresenter.new(@encounter)
       flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class EncountersController < ApplicationController
     else
       @encounter_presenter = EncounterPresenter.new(@encounter)
       flash[:error] = "There was a problem updating this encounter"
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

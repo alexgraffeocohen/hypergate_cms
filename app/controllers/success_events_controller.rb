@@ -16,7 +16,7 @@ class SuccessEventsController < ApplicationController
     else
       @presenter = SuccessEventPresenter.new(event: event, option: option)
       flash[:error] = "There was a problem saving this event: #{event.errors.messages}"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
