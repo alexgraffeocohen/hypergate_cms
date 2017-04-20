@@ -5,8 +5,21 @@
         <%= link_to "Option", edit_encounter_event_option_path(option.event, option.event.encounter, option) %>
       </h4>
       <div class="btn-group">
-        <%= link_to "+", new_encounter_event_option_success_event_path(option.event.encounter, option.event, option), class: "btn btn-success encounter__node-action" %>
-        <%= link_to "+", new_encounter_event_option_failure_event_path(option.event.encounter, option.event, option), class: "btn btn-danger encounter__node-action" %>
+        <% unless option.success_event %>
+          <%= link_to "+",
+            new_encounter_event_option_success_event_path(option.event.encounter, option.event, option),
+            class: "btn btn-success encounter__node-action" %>
+        <% else %>
+          <button class="btn btn-success encounter__node-action" disabled>+</button>
+        <% end %>
+
+        <% unless option.failure_event %>
+          <%= link_to "+",
+            new_encounter_event_option_failure_event_path(option.event.encounter, option.event, option),
+            class: "btn btn-danger encounter__node-action" %>
+        <% else %>
+          <button class="btn btn-danger encounter__node-action" disabled>+</button>
+        <% end %>
       </div>
     </div>
   </div>
