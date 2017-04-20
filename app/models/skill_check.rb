@@ -3,5 +3,5 @@ class SkillCheck < ActiveRecord::Base
 
   validates_presence_of :role, :difficulty
   validates_numericality_of :difficulty
-  validates_inclusion_of :difficulty, in: %w(3 5 7)
+  validates_inclusion_of :difficulty, in: %w(3 5 7).map(&:to_i)
 end
