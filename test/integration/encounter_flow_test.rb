@@ -31,4 +31,24 @@ class EncounterFlowTest < ActionDispatch::IntegrationTest
 
     assert_equal(response.text, role_text)
   end
+
+  test "updating an event with role responses" do
+    event = events(:land_on_ai_planet)
+    role = roles(:engineer)
+    role_text = "That was crazy!"
+
+    # Prove that the event already has an engineer role response with different
+    # text.
+    assert_equal(event.responses.last.role, role)
+    assert_not_equal(event.responses.last.text, role_text)
+
+    patch "/encounters/#{event.encounter.id}/events/#{event.id}",
+      { event: { responses_attributes: { "0" => {role_id: role.id, text: role_text}}}}
+    assert_redirected_to event.encounter
+
+    event.reload
+
+    assert_equal(event.responses.last.role, role)
+    assert_equal(event.responses.last.text, role_text)
+  end
 end
