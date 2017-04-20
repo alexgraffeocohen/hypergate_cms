@@ -32,4 +32,39 @@ class CreateFailureEventTest < ActiveSupport::TestCase
 
     assert_includes(error_message, "This Option already has a Failure Event.")
   end
+
+  test "will remove empty role responses" do
+    @failure_event.responses = [
+      Response.new(
+        text: nil,
+        role: roles(:engineer),
+        event: @failure_event
+      ),
+      Response.new(
+        text: '',
+        role: roles(:pilot),
+        event: @failure_event
+      )
+    ]
+
+    subject = CreateSuccessEvent.new(event: @failure_event, option: @option)
+
+    assert(subject.save)
+    assert(@failure_event.responses.empty?)
+  end
+
+  test "will keep valid role responses" do
+    @failure_event.responses = [
+      Response.new(
+        text: "Holy smokes, captain!",
+        role: roles(:engineer),
+        event: @failure_event
+      )
+    ]
+
+    subject = CreateSuccessEvent.new(event: @failure_event, option: @option)
+
+    assert(subject.save)
+    assert_equal(1, @failure_event.responses.count)
+  end
 end
