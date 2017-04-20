@@ -103,6 +103,6 @@ class OptionFlowTest < ActionDispatch::IntegrationTest
         }
       }
     )
-    assert_response :success
+    assert_response :unprocessable_entity
   end
 end

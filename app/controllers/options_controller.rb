@@ -13,7 +13,7 @@ class OptionsController < ApplicationController
     else
       @presenter = OptionPresenter.new(option)
       flash[:error] = "There was a problem saving this option: #{option.errors.messages}"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +33,7 @@ class OptionsController < ApplicationController
     else
       @presenter = OptionPresenter.new(option)
       flash[:error] = "There was a problem updating this option: #{option.errors.messages}"
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
