@@ -12,4 +12,8 @@ class OptionPresenter
   def encounter
     event.encounter
   end
+
+  def skill_check
+    option.skill_check || SkillCheck.new
+  end
 end

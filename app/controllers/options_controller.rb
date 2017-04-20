@@ -6,6 +6,7 @@ class OptionsController < ApplicationController
 
   def create
     option = Option.new(option_params)
+    remove_skill_check_if_empty(option)
 
     if option.save
       redirect_to encounter_path(encounter), notice: "Successfully saved option."
@@ -24,7 +25,10 @@ class OptionsController < ApplicationController
   def update
     option = Option.find(params[:id])
 
-    if option.update_attributes(option_params)
+    option.assign_attributes(option_params)
+    remove_skill_check_if_empty(option)
+
+    if option.save
       redirect_to encounter_path(encounter), notice: "Successfully saved option."
     else
       @presenter = OptionPresenter.new(option)
@@ -47,10 +51,25 @@ class OptionsController < ApplicationController
 
   private
 
+  def remove_skill_check_if_empty(option)
+    return if !option.skill_check
+
+    skill_check = option.skill_check
+    attributes = [skill_check.role, skill_check.difficulty, skill_check.description]
+
+    unless attributes.any? { |attr| attr.present? }
+      option.skill_check = nil
+    end
+  end
+
   def option_params
     params.
       require(:option).
-      permit(:text, :order).
+      permit(
+        :text,
+        :order,
+        skill_check_attributes: [:role_id, :difficulty, :description]
+      ).
       merge(event_id: event.id)
   end
 

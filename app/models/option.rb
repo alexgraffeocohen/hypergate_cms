@@ -8,4 +8,6 @@ class Option < ActiveRecord::Base
   belongs_to :skill_check, dependent: :destroy
 
   validates_presence_of :text, :order
+
+  accepts_nested_attributes_for :skill_check
 end
