@@ -7,20 +7,19 @@ class CreateSuccessEventTest < ActiveSupport::TestCase
       description: "We were victorious!",
       encounter: @encounter
     )
-  end
-
-  test "associates event as option success event" do
-    option = Option.new(
+    @option = Option.new(
       text: "Re-program the robots",
       order: 3,
       event: @encounter.starting_event
     )
-    option.save
+    @option.save
+  end
 
-    subject = CreateSuccessEvent.new(event: @success_event, option: option)
+  test "associates event as option success event" do
+    subject = CreateSuccessEvent.new(event: @success_event, option: @option)
 
     assert(subject.save)
-    assert_equal(option.success_event, @success_event)
+    assert_equal(@option.success_event, @success_event)
   end
 
   test "fails if option already has a success event" do
@@ -35,12 +34,6 @@ class CreateSuccessEventTest < ActiveSupport::TestCase
   end
 
   test "will remove empty role responses" do
-    option = Option.new(
-      text: "Re-program the robots",
-      order: 3,
-      event: @encounter.starting_event
-    )
-    option.save
     @success_event.responses = [
       Response.new(
         text: nil,
@@ -54,19 +47,13 @@ class CreateSuccessEventTest < ActiveSupport::TestCase
       )
     ]
 
-    subject = CreateSuccessEvent.new(event: @success_event, option: option)
+    subject = CreateSuccessEvent.new(event: @success_event, option: @option)
 
     assert(subject.save)
     assert(@success_event.responses.empty?)
   end
 
   test "will keep valid role responses" do
-    option = Option.new(
-      text: "Re-program the robots",
-      order: 3,
-      event: @encounter.starting_event
-    )
-    option.save
     @success_event.responses = [
       Response.new(
         text: "Holy smokes, captain!",
@@ -75,7 +62,7 @@ class CreateSuccessEventTest < ActiveSupport::TestCase
       )
     ]
 
-    subject = CreateSuccessEvent.new(event: @success_event, option: option)
+    subject = CreateSuccessEvent.new(event: @success_event, option: @option)
 
     assert(subject.save)
     assert_equal(1, @success_event.responses.count)
