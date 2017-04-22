@@ -23,6 +23,26 @@ class EventPresenter
     end
   end
 
+  def event_results
+    [].tap do |array|
+      array << event.event_results.to_a
+      array.flatten!
+
+      existing_effect_ids = event.event_results.map(&:ship_effect_result).map(&:ship_effect_id)
+      non_existent_effects = ShipEffect.where.not(id: existing_effect_ids)
+
+      non_existent_effects.each do |ship_effect|
+        array << EventResult.new(
+          event: event,
+          ship_effect_result: ShipEffectResult.new(
+            ship_effect: ship_effect,
+            amount: nil
+          )
+        )
+      end
+    end
+  end
+
   def starting_event?
     encounter.starting_event == event
   end

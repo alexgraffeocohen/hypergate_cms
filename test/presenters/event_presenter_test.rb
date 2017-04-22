@@ -32,6 +32,27 @@ class EventPresenterTest < ActiveSupport::TestCase
       text
   end
 
+  test "#event_results returns objects for each ship effect" do
+    presenter = EventPresenter.new(Event.new)
+    assert_equal 3, presenter.event_results.length
+  end
+
+  test "#event_results returns the same number when the event has event results" do
+    event = events(:cannot_defeat_the_ai)
+    presenter = EventPresenter.new(event)
+
+    assert_equal 3, presenter.event_results.length
+  end
+
+  test "#event_results returns existing event results on event" do
+    event = events(:cannot_defeat_the_ai)
+    presenter = EventPresenter.new(event)
+
+    assert presenter.
+      event_results.
+      select { |result| result.ship_effect_result.ship_effect == ship_effects(:crew_sanity) }, true
+  end
+
   test "#encounter returns event's encounter" do
     event = events(:land_on_ai_planet)
     presenter = EventPresenter.new(event)
