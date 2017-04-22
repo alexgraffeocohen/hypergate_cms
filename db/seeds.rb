@@ -28,3 +28,8 @@ Role.create([
   { name: "Pilot" },
 ])
 
+ShipEffect.create([
+  { name: "Crew Sanity" },
+  { name: "Crew Health" },
+  { name: "Ship Systems" },
+])
