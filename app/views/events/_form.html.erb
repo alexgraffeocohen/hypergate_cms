@@ -14,6 +14,22 @@
     <% end %>
   <% end %>
 
+  <%= field_set_tag "Team Effects" do %>
+    <p>
+      The effects of an event on your crew and/or ship. Any event can have ship
+      effects, not just the last event within a chain. You don't have to have
+      ship effects on the last event within a chain. Since it only goes from -3
+      to 3, those extremes should be used very rarely.
+    </p>
+    <%= f.simple_fields_for :event_results, @presenter.event_results do |event_results_form| %>
+      <%= event_results_form.simple_fields_for :ship_effect_result do |form| %>
+        <%= form.input :ship_effect_id, as: :hidden %>
+        <%= form.association :ship_effect, disabled: true %>
+        <%= form.input :amount, collection: [-3,-2,-1,1,2,3] %>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <div class="pull-right">
     <%= link_to "Cancel",
       encounter_path(@presenter.encounter),
