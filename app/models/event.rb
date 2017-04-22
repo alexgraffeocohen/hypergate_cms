@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   # I marked the belongs_to on EventResult with dependent: :destroy.
   # See: http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_many
   has_many :ship_effect_results, through: :event_results, dependent: :destroy
-  has_many :event_results
+  has_many :event_results, inverse_of: :event
   # The records which get deleted are the join records, rather than the
   # associated records.
   # See: http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_many
@@ -22,5 +22,5 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :description, :encounter
 
-  accepts_nested_attributes_for :responses
+  accepts_nested_attributes_for :responses, :event_results
 end
