@@ -3,11 +3,9 @@
 
   <%= field_set_tag "Role Responses" do %>
     <p>
-      The reactions each role has to the encounter description. This could
-      be as detailed or as minimal as necessary, but a paragraph max. Not
-      every role needs to have anything to say. If nothing is filled in for
-      a role, the book will print some default. But the more roles have
-      something to say, the better.
+      The reactions each role has to the encounter description. This should be
+      no more than a couple of sentences. Not every role needs to have anything
+      to say, so be sure it makes narrative sense why a role would have input.
     </p>
     <%= f.simple_fields_for :responses, @presenter.responses do |responses_form| %>
       <%= responses_form.input :role_id, as: :hidden %>
