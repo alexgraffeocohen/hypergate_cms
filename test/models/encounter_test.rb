@@ -43,11 +43,9 @@ class EncounterTest < ActiveSupport::TestCase
     item_reward = success_event.item_rewards.first
     module_reward = success_event.ship_module_rewards.first
     failure_event = option.failure_event
-    ship_effect_result = failure_event.ship_effect_results.first
 
     item = item_reward.item
     ship_module = module_reward.ship_module
-    ship_effect = ship_effect_result.ship_effect
 
     assert(encounter.destroy)
 
@@ -60,10 +58,8 @@ class EncounterTest < ActiveSupport::TestCase
     assert_equal(0, ShipModuleReward.where(id: module_reward.id).count, "Expected ship module reward to be destroyed")
     assert_equal(0, Event.where(id: failure_event.id).count, "Expected failure event to be destroyed")
     assert_equal(0, EventResult.where(event: failure_event).count, "Expected event result to be destroyed")
-    assert_equal(0, ShipEffectResult.where(id: ship_effect_result.id).count, "Expected ship effect result to be destroyed")
 
     assert_equal(1, ShipModule.where(id: ship_module.id).count, "Expected ship module to not be destroyed")
     assert_equal(1, Item.where(id: item.id).count, "Expected item to not be destroyed")
-    assert_equal(1, ShipEffect.where(id: ship_effect.id).count, "Expected ship effect to not be destroyed")
   end
 end

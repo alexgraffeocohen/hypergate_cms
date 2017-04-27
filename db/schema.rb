@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408163719) do
+ActiveRecord::Schema.define(version: 20170423214849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,12 @@ ActiveRecord::Schema.define(version: 20170408163719) do
   end
 
   create_table "event_results", force: :cascade do |t|
-    t.integer  "ship_effect_result_id", null: false
-    t.integer  "event_id",              null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "event_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "event_results", ["event_id"], name: "index_event_results_on_event_id", using: :btree
-  add_index "event_results", ["ship_effect_result_id"], name: "index_event_results_on_ship_effect_result_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.text     "description",       null: false
@@ -117,15 +115,6 @@ ActiveRecord::Schema.define(version: 20170408163719) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ship_effect_results", force: :cascade do |t|
-    t.integer  "ship_effect_id", null: false
-    t.integer  "amount",         null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "ship_effect_results", ["ship_effect_id"], name: "index_ship_effect_results_on_ship_effect_id", using: :btree
-
   create_table "ship_effects", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -164,7 +153,6 @@ ActiveRecord::Schema.define(version: 20170408163719) do
 
   add_foreign_key "encounters", "events", column: "starting_event_id"
   add_foreign_key "event_results", "events", on_delete: :cascade
-  add_foreign_key "event_results", "ship_effect_results", on_delete: :cascade
   add_foreign_key "events", "encounters"
   add_foreign_key "events", "encounters", column: "next_encounter_id"
   add_foreign_key "item_rewards", "events"
@@ -180,7 +168,6 @@ ActiveRecord::Schema.define(version: 20170408163719) do
   add_foreign_key "response_skill_checks", "options"
   add_foreign_key "responses", "events"
   add_foreign_key "responses", "roles"
-  add_foreign_key "ship_effect_results", "ship_effects"
   add_foreign_key "ship_module_rewards", "events"
   add_foreign_key "ship_module_rewards", "ship_modules"
   add_foreign_key "ship_modules", "roles"
