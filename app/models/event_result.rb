@@ -6,4 +6,6 @@ class EventResult < ActiveRecord::Base
   validates_numericality_of :amount,
     less_than_or_equal_to: 3,
     greater_than_or_equal_to: -3
+  validates :ship_effect,
+    uniqueness: { scope: :event }
 end

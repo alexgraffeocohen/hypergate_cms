@@ -32,9 +32,26 @@ class EventPresenterTest < ActiveSupport::TestCase
       text
   end
 
+  test "#event_results does not create new event_results" do
+    assert_equal 3, EventResult.count
+
+    presenter = EventPresenter.new(Event.new)
+    presenter.event_results
+
+    assert_equal 3, EventResult.count
+  end
+
   test "#event_results returns objects for each ship effect" do
     presenter = EventPresenter.new(Event.new)
     assert_equal 3, presenter.event_results.length
+  end
+
+  test "#event_results sets amount to 0 for new event results" do
+    presenter = EventPresenter.new(Event.new)
+
+    assert presenter.
+      event_results.
+      map(&:amount).all? { |amount| amount == 0 }
   end
 
   test "#event_results returns the same number when the event has event results" do
@@ -46,11 +63,10 @@ class EventPresenterTest < ActiveSupport::TestCase
 
   test "#event_results returns existing event results on event" do
     event = events(:cannot_defeat_the_ai)
+    existing_event_result = event.event_results.last
     presenter = EventPresenter.new(event)
 
-    assert presenter.
-      event_results.
-      select { |result| result.ship_effect_result.ship_effect == ship_effects(:crew_sanity) }, true
+    assert_includes presenter.event_results, existing_event_result
   end
 
   test "#encounter returns event's encounter" do

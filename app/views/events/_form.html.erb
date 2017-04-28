@@ -22,11 +22,9 @@
       to 3, those extremes should be used very rarely.
     </p>
     <%= f.simple_fields_for :event_results, @presenter.event_results do |event_results_form| %>
-      <%= event_results_form.simple_fields_for :ship_effect_result do |form| %>
-        <%= form.input :ship_effect_id, as: :hidden %>
-        <%= form.association :ship_effect, disabled: true %>
-        <%= form.input :amount, collection: [-3,-2,-1,1,2,3] %>
-      <% end %>
+      <%= event_results_form.input :ship_effect_id, as: :hidden %>
+      <%= event_results_form.association :ship_effect, disabled: true %>
+      <%= event_results_form.input :amount, input_html: { max: 3, min: -3 } %>
     <% end %>
   <% end %>
 

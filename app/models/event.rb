@@ -4,8 +4,7 @@ class Event < ActiveRecord::Base
   has_many :options, dependent: :destroy
   has_many :responses, dependent: :destroy
   # The records which get deleted are the join records, rather than the
-  # associated records. ShipEffectResult only gets deleted in this case because
-  # I marked the belongs_to on EventResult with dependent: :destroy.
+  # associated records.
   # See: http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_many
   has_many :event_results, inverse_of: :event, dependent: :destroy
   # The records which get deleted are the join records, rather than the

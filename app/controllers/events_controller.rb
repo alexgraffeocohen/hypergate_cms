@@ -54,7 +54,11 @@ class EventsController < ApplicationController
   def event_params
     params.
       require(:event).
-      permit(:description, responses_attributes: [:role_id, :text]).
+      permit(
+        :description,
+        responses_attributes: [:role_id, :text],
+        event_results_attributes: [:ship_effect_id, :amount]
+      ).
       merge(encounter_id: encounter_id)
   end
 
