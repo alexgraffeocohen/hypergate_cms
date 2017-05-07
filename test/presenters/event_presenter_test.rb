@@ -32,15 +32,6 @@ class EventPresenterTest < ActiveSupport::TestCase
       text
   end
 
-  test "#event_results does not create new event_results" do
-    assert_equal 3, EventResult.count
-
-    presenter = EventPresenter.new(Event.new)
-    presenter.event_results
-
-    assert_equal 3, EventResult.count
-  end
-
   test "#event_results returns objects for each ship effect" do
     presenter = EventPresenter.new(Event.new)
     assert_equal 3, presenter.event_results.length

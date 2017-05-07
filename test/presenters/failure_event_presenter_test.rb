@@ -35,4 +35,33 @@ class FailureEventPresenterTest < ActiveSupport::TestCase
       first.
       text
   end
+
+  test "#event_results returns objects for each ship effect" do
+    presenter = FailureEventPresenter.new(
+      event: Event.new,
+      option: @option
+    )
+    assert_equal 3, presenter.event_results.length
+  end
+
+  test "#event_results sets amount to 0 for new event results" do
+    presenter = FailureEventPresenter.new(
+      event: Event.new,
+      option: @option
+    )
+
+    assert presenter.
+      event_results.
+      map(&:amount).all? { |amount| amount == 0 }
+  end
+
+  test "#event_results returns the same number when the event has event results" do
+    event = events(:cannot_defeat_the_ai)
+    presenter = FailureEventPresenter.new(
+      event: event,
+      option: @option
+    )
+
+    assert_equal 3, presenter.event_results.length
+  end
 end

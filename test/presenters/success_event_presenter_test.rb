@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SuccessEventPresenterTest < ActiveSupport::TestCase
+class SuccessSuccessEventPresenterTest < ActiveSupport::TestCase
   def setup
     @option = options(:fight_the_ai)
   end
@@ -34,5 +34,34 @@ class SuccessEventPresenterTest < ActiveSupport::TestCase
       responses.
       first.
       text
+  end
+
+  test "#event_results returns objects for each ship effect" do
+    presenter = SuccessEventPresenter.new(
+      event: Event.new,
+      option: @option
+    )
+    assert_equal 3, presenter.event_results.length
+  end
+
+  test "#event_results sets amount to 0 for new event results" do
+    presenter = SuccessEventPresenter.new(
+      event: Event.new,
+      option: @option
+    )
+
+    assert presenter.
+      event_results.
+      map(&:amount).all? { |amount| amount == 0 }
+  end
+
+  test "#event_results returns the same number when the event has event results" do
+    event = events(:cannot_defeat_the_ai)
+    presenter = SuccessEventPresenter.new(
+      event: event,
+      option: @option
+    )
+
+    assert_equal 3, presenter.event_results.length
   end
 end
