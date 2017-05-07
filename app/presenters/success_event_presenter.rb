@@ -27,4 +27,14 @@ class SuccessEventPresenter
       end
     end
   end
+
+  def event_results
+    ShipEffect.all.map do |ship_effect|
+      EventResult.new(
+        amount: 0,
+        ship_effect: ship_effect,
+        event: event
+      )
+    end
+  end
 end
