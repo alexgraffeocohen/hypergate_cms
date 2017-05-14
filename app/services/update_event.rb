@@ -22,10 +22,12 @@ class UpdateEvent
 
   def prepare_event_for_update
     clear_existing_responses
-    @event_results = update_existing_event_results
     reject_invalid_responses
 
-    event.event_results = @event_results if @event_results
+    if event.event_results.present?
+      @event_results = update_existing_event_results
+      event.event_results = @event_results if @event_results
+    end
   end
 
   def clear_existing_responses
