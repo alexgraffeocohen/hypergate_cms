@@ -28,6 +28,17 @@
     <% end %>
   <% end %>
 
+  <%= field_set_tag "Rewards" do %>
+    <p>
+      The item and/or ship module gained as a result of this event. It's a lot
+      easier technically to just allow for one of each as a reward (and seems cleaner for
+      balancing), but if we really seem to want to reward more than one of
+      either we can talk about it.
+    </p>
+
+    <%= f.association :item %>
+  <% end %>
+
   <div class="pull-right">
     <%= link_to "Cancel",
       encounter_path(@presenter.encounter),

@@ -27,6 +27,7 @@ class FailureEventsController < ApplicationController
       require(:event).
       permit(
         :description,
+        :item_id,
         responses_attributes: [:role_id, :text],
         event_results_attributes: [:ship_effect_id, :amount]
       ).
