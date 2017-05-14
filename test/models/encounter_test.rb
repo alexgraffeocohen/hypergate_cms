@@ -40,10 +40,7 @@ class EncounterTest < ActiveSupport::TestCase
   #   option = starting_event.options.where(text: "Fight the AI").first
   #   skill_check = option.skill_check
   #   success_event = option.success_event
-  #   module_reward = success_event.ship_module_rewards.first
   #   failure_event = option.failure_event
-
-  #   ship_module = module_reward.ship_module
 
   #   assert(encounter.destroy)
 
@@ -52,7 +49,6 @@ class EncounterTest < ActiveSupport::TestCase
   #   assert_equal(0, Option.where(id: option.id).count, "Expected option to be destroyed")
   #   assert_equal(0, SkillCheck.where(id: skill_check.id).count, "Expected skill check to be destroyed")
   #   assert_equal(0, Event.where(id: success_event.id).count, "Expected success event to be destroyed")
-  #   assert_equal(0, ShipModuleReward.where(id: module_reward.id).count, "Expected ship module reward to be destroyed")
   #   assert_equal(0, Event.where(id: failure_event.id).count, "Expected failure event to be destroyed")
   #   assert_equal(0, EventResult.where(event: failure_event).count, "Expected event result to be destroyed")
 
