@@ -28,6 +28,7 @@ class FailureEventsController < ApplicationController
       permit(
         :description,
         :item_id,
+        :ship_module_id,
         responses_attributes: [:role_id, :text],
         event_results_attributes: [:ship_effect_id, :amount]
       ).
