@@ -1,5 +1,6 @@
 <%= simple_form_for @encounter do |f| %>
   <%= field_set_tag "Basic" do %>
+    <%= f.input :published, hint: "Make sure to only publish an encounter when you're ready for it to show up in the app." %>
     <%= f.input :category_id, collection: @encounter_presenter.categories %>
     <%= f.input :title %>
     <%= f.input :description, as: :text, input_html: { rows: 5 } %>
