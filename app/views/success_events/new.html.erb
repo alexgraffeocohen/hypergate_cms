@@ -44,12 +44,13 @@
     <%= field_set_tag "Rewards" do %>
       <p>
         The item and/or ship module gained as a result of this event, along with
-        an optional role required to receive that reward.
+        an optional role required to receive that reward. You can have rewards
+        on any event within an encounter.
       </p>
 
-      <%= f.association :item_role_requirement, label: "Required Role for Item" %>
+      <%= f.association :item_role_requirement, label: "Role for Item" %>
       <%= f.association :item %>
-      <%= f.association :ship_module_role_requirement, label: "Required Role for Module" %>
+      <%= f.association :ship_module_role_requirement, label: "Role for Module" %>
       <%= f.association :ship_module %>
     <% end %>
 
