@@ -58,6 +58,8 @@ class EventsController < ApplicationController
         :description,
         :item_id,
         :ship_module_id,
+        :item_role_requirement_id,
+        :ship_module_role_requirement_id,
         responses_attributes: [:role_id, :text],
         event_results_attributes: [:ship_effect_id, :amount]
       ).
