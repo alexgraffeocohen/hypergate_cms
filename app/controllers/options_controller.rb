@@ -68,6 +68,7 @@ class OptionsController < ApplicationController
       permit(
         :text,
         :order,
+        :required_role_id,
         skill_check_attributes: [:role_id, :difficulty, :description]
       ).
       merge(event_id: event.id)

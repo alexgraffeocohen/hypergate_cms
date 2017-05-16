@@ -2,6 +2,10 @@
   <%= f.input :text  %>
   <%= f.input :order %>
 
+  <%= field_set_tag "Requirements" do %>
+    <%= f.association :required_role, label: "Role" %>
+  <% end %>
+
   <%= field_set_tag "Skill Check" do %>
     <%= f.simple_fields_for :skill_check, @presenter.skill_check do |form| %>
       <%= form.association :role %>
