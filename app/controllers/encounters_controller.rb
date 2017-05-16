@@ -37,8 +37,8 @@ class EncountersController < ApplicationController
       flash[:notice] = "Successfully updated encounter."
       redirect_to encounters_path
     else
-      @encounter_presenter = EncounterPresenter.new(@encounter)
-      flash[:error] = "There was a problem updating this encounter"
+      @encounter_presenter = EncounterFormPresenter.new(@encounter)
+      flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
       render :edit, status: :unprocessable_entity
     end
   end
