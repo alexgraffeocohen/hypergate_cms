@@ -17,7 +17,7 @@ class EncountersController < ApplicationController
     @encounter = Encounter.new(encounter_params)
 
     if @encounter.save
-      redirect_to encounters_path, notice: "Successfully saved encounter."
+      redirect_to encounter_path(@encounter), notice: "Successfully created encounter."
     else
       @encounter_presenter = EncounterFormPresenter.new(@encounter)
       flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
@@ -35,7 +35,7 @@ class EncountersController < ApplicationController
 
     if @encounter.update_attributes(encounter_params)
       flash[:notice] = "Successfully updated encounter."
-      redirect_to encounters_path
+      redirect_to encounter_path(@encounter)
     else
       @encounter_presenter = EncounterFormPresenter.new(@encounter)
       flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
