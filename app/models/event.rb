@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
   belongs_to :item_role_requirement, class_name: Role
   belongs_to :ship_module_role_requirement, class_name: Role
 
+  validates_associated :options
   validates_presence_of :description, :encounter
   validates :item,
     presence: {

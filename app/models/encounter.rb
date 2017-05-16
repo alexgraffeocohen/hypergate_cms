@@ -6,4 +6,6 @@ class Encounter < ActiveRecord::Base
 
   validates_presence_of :category, :description, :standalone
   validates_presence_of :starting_event, if: :published
+
+  validates_associated :starting_event
 end

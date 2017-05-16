@@ -33,6 +33,51 @@ class EncounterTest < ActiveSupport::TestCase
     assert(@encounter.standalone)
   end
 
+  test "invalid if published encounter has invalid options" do
+    event = Event.new(
+      description: "an event!",
+      encounter: @encounter
+    )
+    event.save
+
+    event.options << Option.new(
+      order: 1,
+      text: "invalid"
+    )
+    event.save
+    @encounter.save
+
+    @encounter.starting_event = event
+    @encounter.published = true
+
+    assert_not(@encounter.valid?)
+  end
+
+  test "valid if published encounter has valid options" do
+    event = Event.new(
+      description: "an event!",
+      encounter: @encounter
+    )
+    event.save
+    success_event = Event.new(
+      description: "success!",
+      encounter: @encounter
+    )
+    success_event.save
+
+    event.options << Option.new(
+      order: 1,
+      text: "valid",
+      success_event: success_event
+    )
+    event.save
+
+    @encounter.starting_event = event
+    @encounter.published = true
+
+    assert(@encounter.valid?)
+  end
+
   # test "destroying encounter destroys correct children objects" do
   #   encounter = encounters(:ai_planet)
   #   starting_event = encounter.starting_event

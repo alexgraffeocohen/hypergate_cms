@@ -5,6 +5,7 @@ class Option < ActiveRecord::Base
   belongs_to :required_role, class_name: Role
   belongs_to :skill_check, dependent: :destroy
 
+  validates_associated :success_event, :failure_event
   validates_presence_of :text, :order
   validates_presence_of :success_event, if: :encounter_published?
 
