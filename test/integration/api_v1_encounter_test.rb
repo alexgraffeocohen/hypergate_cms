@@ -41,4 +41,11 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
       assert_includes(@encounter_response.keys, attribute)
     end
   end
+
+  test "category node is included" do
+    category = @encounter_response["category"]
+
+    assert(category, "Expected category node to be present")
+    assert_includes(category.keys, "name")
+  end
 end
