@@ -13,16 +13,12 @@ class Event < ActiveRecord::Base
   validates_presence_of :description, :encounter
   validates :item,
     presence: {
-    if: Proc.new { |event|
-      event.item_role_requirement.present?
-    },
+    if: :item_role_requirement,
     message: "Must have an item reward to require a role for that item."
   }
   validates :ship_module,
     presence: {
-    if: Proc.new { |event|
-      event.ship_module_role_requirement.present?
-    },
+    if: :ship_module_role_requirement,
     message: "Must have a ship module reward to require a role for that ship module."
   }
 
