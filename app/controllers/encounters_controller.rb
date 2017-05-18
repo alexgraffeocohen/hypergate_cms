@@ -20,7 +20,6 @@ class EncountersController < ApplicationController
       redirect_to encounter_path(@encounter), notice: "Successfully created encounter."
     else
       @encounter_presenter = EncounterFormPresenter.new(@encounter)
-      flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
       render :new, status: :unprocessable_entity
     end
   end
@@ -38,7 +37,6 @@ class EncountersController < ApplicationController
       redirect_to encounter_path(@encounter)
     else
       @encounter_presenter = EncounterFormPresenter.new(@encounter)
-      flash[:error] = "There was a problem saving this encounter: #{@encounter.errors.messages}"
       render :edit, status: :unprocessable_entity
     end
   end
