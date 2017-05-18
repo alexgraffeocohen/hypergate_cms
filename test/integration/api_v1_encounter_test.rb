@@ -48,4 +48,10 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     assert(category, "Expected category node to be present")
     assert_includes(category.keys, "name")
   end
+
+  test "starting_event node is included" do
+    starting_event = @encounter_response["starting_event"]
+
+    assert(starting_event, "Expected starting_event node to be present")
+  end
 end
