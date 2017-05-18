@@ -10,6 +10,7 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     @encounters = JSON.parse(@response.body)
+    @encounter_response = @encounters.first
   end
 
   test "only published encounters returned" do
@@ -26,5 +27,18 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
 
     assert(published_encounter_in_response)
     assert_not(unpublished_encounter_in_response)
+  end
+
+  test "only relevant encounter attributes are present" do
+    irrelevant_attributes = %w[created_at updated_at published]
+    relevant_attributes = %w[id description standalone title]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(@encounter_response.keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(@encounter_response.keys, attribute)
+    end
   end
 end
