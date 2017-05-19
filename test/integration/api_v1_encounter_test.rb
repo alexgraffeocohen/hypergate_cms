@@ -90,4 +90,11 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
       refute_includes(ship_module.keys, attribute)
     end
   end
+
+  test "options on event is included" do
+    starting_event = @encounter_response["starting_event"]
+    options = starting_event["options"]
+
+    assert(options, "Expected options to be present")
+  end
 end
