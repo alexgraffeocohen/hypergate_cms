@@ -54,4 +54,18 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
 
     assert(starting_event, "Expected starting_event node to be present")
   end
+
+  test "only relevant event attributes are present" do
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[id title description]
+    starting_event = @encounter_response["starting_event"]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(starting_event.keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(starting_event.keys, attribute)
+    end
+  end
 end
