@@ -68,4 +68,26 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
       assert_includes(starting_event.keys, attribute)
     end
   end
+
+  test "ship module on event is included" do
+    starting_event = @encounter_response["starting_event"]
+    ship_module = starting_event["ship_module_reward"]
+
+    assert(ship_module, "Expected ship module node to be present")
+  end
+
+  test "only relevant attributes on ship module are present" do
+    starting_event = @encounter_response["starting_event"]
+    ship_module = starting_event["ship_module_reward"]
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[id name role]
+
+    relevant_attributes.each do |attribute|
+      assert_includes(ship_module.keys, attribute)
+    end
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(ship_module.keys, attribute)
+    end
+  end
 end

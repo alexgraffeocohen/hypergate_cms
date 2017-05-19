@@ -3,7 +3,7 @@ module Api
     class EncountersController < ApplicationController
       def index
         @encounters = Encounter.published
-        render json: @encounters
+        render json: @encounters, include: '**'
       end
     end
   end

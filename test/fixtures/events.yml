@@ -2,6 +2,7 @@
 land_on_ai_planet:
   encounter: ai_planet
   description: "We have to defeat the AI somehow."
+  ship_module: engineering
 
 defeat_the_ai:
   encounter: ai_planet

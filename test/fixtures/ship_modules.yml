@@ -3,3 +3,6 @@
 med_bay:
   name: "Medical Bay"
   role: science_officer
+engineering:
+  name: "Engineering"
+  role: engineer

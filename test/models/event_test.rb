@@ -25,6 +25,7 @@ class EventTest < ActiveSupport::TestCase
 
   test "ship module is required with ship_module_role_requirement" do
     event = events(:land_on_ai_planet)
+    event.ship_module = nil
     event.ship_module_role_requirement = roles(:engineer)
 
     assert_not(event.valid?)
