@@ -97,4 +97,20 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
 
     assert(options, "Expected options to be present")
   end
+
+  test "only relevant attributes on option are present" do
+    starting_event = @encounter_response["starting_event"]
+    option = starting_event["options"].first
+
+    irrelevant_attributes = %w[created_at updated_at event_id]
+    relevant_attributes = %w[id text order]
+
+    relevant_attributes.each do |attribute|
+      assert_includes(option.keys, attribute)
+    end
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(option.keys, attribute)
+    end
+  end
 end
