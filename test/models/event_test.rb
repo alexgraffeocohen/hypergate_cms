@@ -4,6 +4,7 @@ class EventTest < ActiveSupport::TestCase
   test "item is required with item_role_requirement" do
     event = events(:land_on_ai_planet)
     event.item_role_requirement = roles(:engineer)
+    event.item = nil
 
     assert_not(event.valid?)
   end

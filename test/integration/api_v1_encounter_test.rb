@@ -88,6 +88,26 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "item on event is included" do
+    item = @starting_event["item_reward"]
+
+    assert(item, "Expected item node to be present")
+  end
+
+  test "only relevant attributes on item are present" do
+    item = @starting_event["item_reward"]
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[id name role]
+
+    relevant_attributes.each do |attribute|
+      assert_includes(item.keys, attribute)
+    end
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(item.keys, attribute)
+    end
+  end
+
   test "options on event is included" do
     options = @starting_event["options"]
 

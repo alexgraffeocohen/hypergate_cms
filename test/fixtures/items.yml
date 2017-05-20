@@ -3,3 +3,6 @@
 laser_sword:
   name: "Laser Sword"
   role: weapons_officer
+science:
+  name: "Science"
+  role: science_officer
