@@ -106,4 +106,42 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
       refute_includes(@option.keys, attribute)
     end
   end
+
+  test "success event on option present" do
+    assert(@option["success_event"])
+  end
+
+  test "only relevant attributes on success event are present" do
+    success_event = @option["success_event"]
+
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[id title description]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(success_event.keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(success_event.keys, attribute)
+    end
+  end
+
+  test "failure event on option present" do
+    assert(@option["failure_event"])
+  end
+
+  test "only relevant attributes on failure event are present" do
+    failure_event = @option["failure_event"]
+
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[id title description]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(failure_event.keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(failure_event.keys, attribute)
+    end
+  end
 end
