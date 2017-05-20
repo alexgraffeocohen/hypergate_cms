@@ -11,6 +11,8 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
 
     @encounters = JSON.parse(@response.body)
     @encounter_response = @encounters.first
+    @starting_event = @encounter_response["starting_event"]
+    @option = @starting_event["options"].first
   end
 
   test "only published encounters returned" do
@@ -49,36 +51,31 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     assert_includes(category.keys, "name")
   end
 
-  test "starting_event node is included" do
-    starting_event = @encounter_response["starting_event"]
-
-    assert(starting_event, "Expected starting_event node to be present")
+  test "@starting_event node is included" do
+    assert(@starting_event, "Expected @starting_event node to be present")
   end
 
   test "only relevant event attributes are present" do
     irrelevant_attributes = %w[created_at updated_at]
     relevant_attributes = %w[id title description]
-    starting_event = @encounter_response["starting_event"]
 
     irrelevant_attributes.each do |attribute|
-      refute_includes(starting_event.keys, attribute)
+      refute_includes(@starting_event.keys, attribute)
     end
 
     relevant_attributes.each do |attribute|
-      assert_includes(starting_event.keys, attribute)
+      assert_includes(@starting_event.keys, attribute)
     end
   end
 
   test "ship module on event is included" do
-    starting_event = @encounter_response["starting_event"]
-    ship_module = starting_event["ship_module_reward"]
+    ship_module = @starting_event["ship_module_reward"]
 
     assert(ship_module, "Expected ship module node to be present")
   end
 
   test "only relevant attributes on ship module are present" do
-    starting_event = @encounter_response["starting_event"]
-    ship_module = starting_event["ship_module_reward"]
+    ship_module = @starting_event["ship_module_reward"]
     irrelevant_attributes = %w[created_at updated_at]
     relevant_attributes = %w[id name role]
 
@@ -92,25 +89,21 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
   end
 
   test "options on event is included" do
-    starting_event = @encounter_response["starting_event"]
-    options = starting_event["options"]
+    options = @starting_event["options"]
 
     assert(options, "Expected options to be present")
   end
 
   test "only relevant attributes on option are present" do
-    starting_event = @encounter_response["starting_event"]
-    option = starting_event["options"].first
-
     irrelevant_attributes = %w[created_at updated_at event_id]
     relevant_attributes = %w[id text order]
 
     relevant_attributes.each do |attribute|
-      assert_includes(option.keys, attribute)
+      assert_includes(@option.keys, attribute)
     end
 
     irrelevant_attributes.each do |attribute|
-      refute_includes(option.keys, attribute)
+      refute_includes(@option.keys, attribute)
     end
   end
 end
