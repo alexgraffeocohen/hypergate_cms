@@ -3,6 +3,8 @@ class EventSerializer < ActiveModel::Serializer
 
   belongs_to :ship_module, key: :ship_module_reward
   belongs_to :item, key: :item_reward
+  belongs_to :item_role_requirement
+  belongs_to :ship_module_role_requirement
   has_many :options
   has_many :responses
   has_many :event_results, key: :results
