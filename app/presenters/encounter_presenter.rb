@@ -5,6 +5,10 @@ class EncounterPresenter
     @encounter = encounter
   end
 
+  def published
+    encounter.published.to_s.capitalize
+  end
+
   def title
     encounter.title || default_title
   end
