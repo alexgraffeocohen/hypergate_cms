@@ -5,6 +5,7 @@ class EventSerializer < ActiveModel::Serializer
   belongs_to :item, key: :item_reward
   has_many :options
   has_many :responses
+  has_many :event_results, key: :results
 
   def title
     object.encounter.title

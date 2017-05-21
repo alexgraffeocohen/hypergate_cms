@@ -87,6 +87,41 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "event results on event are present" do
+    assert(@starting_event["results"], "Results node not present")
+  end
+
+  test "only relevant attributes on results are present" do
+    result = @starting_event["results"].first
+
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[id amount ship_effect]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(result.keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(result.keys, attribute)
+    end
+  end
+
+  test "only relevant attributes on ship effect are present" do
+    result = @starting_event["results"].first
+    ship_effect = result["ship_effect"]
+
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[name id]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(ship_effect.keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(ship_effect.keys, attribute)
+    end
+  end
+
   test "ship module on event is included" do
     ship_module = @starting_event["ship_module_reward"]
 

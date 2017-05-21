@@ -10,3 +10,7 @@ failing_to_defeat_the_ai_ship_systems:
   event: cannot_defeat_the_ai
   ship_effect: ship_systems
   amount: 0
+landing_improves_sanity:
+  event: land_on_ai_planet
+  ship_effect: crew_sanity
+  amount: 1
