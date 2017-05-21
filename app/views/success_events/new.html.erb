@@ -11,6 +11,9 @@
     ],
     url: encounter_event_option_success_events_path) do |f| %>
     <%= f.input :description, as: :text, input_html: { rows: 5 } %>
+    <%= f.association :next_encounter,
+      label: "Next Encounter",
+      hint: "The encounter this event leads to within a multi-encounter arc. Will reveal the encounter on the sector map." %>
 
     <%= field_set_tag "Role Responses" do %>
       <p>
