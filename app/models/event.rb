@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
 
   validates_associated :options
   validates_presence_of :description, :encounter
+  validate :next_encounter_is_not_event_encounter
   validates :item,
     presence: {
     if: :item_role_requirement,
@@ -23,4 +24,12 @@ class Event < ActiveRecord::Base
   }
 
   accepts_nested_attributes_for :responses, :event_results
+
+  private
+
+  def next_encounter_is_not_event_encounter
+    if next_encounter == encounter
+      errors.add(:next_encounter, "Can't select this event's encounter as the next encounter.")
+    end
+  end
 end

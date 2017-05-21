@@ -47,6 +47,20 @@ class EventTest < ActiveSupport::TestCase
     assert(event.valid?)
   end
 
+  test "next encounter cannot be event encounter" do
+    event = events(:land_on_ai_planet)
+    event.next_encounter = event.encounter
+
+    assert_not(event.valid?)
+  end
+
+  test "next encounter can be a different encounter" do
+    event = events(:land_on_ai_planet)
+    event.next_encounter = encounters(:earth_like)
+
+    assert(event.valid?)
+  end
+
   test "Event#destroy when it is not a starting event" do
     encounter = encounters(:ai_planet)
     event = Event.new(
