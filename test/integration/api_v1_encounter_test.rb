@@ -131,7 +131,7 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
 
   test "only relevant attributes on option are present" do
     irrelevant_attributes = %w[created_at updated_at event_id]
-    relevant_attributes = %w[id text order]
+    relevant_attributes = %w[id text order required_role]
 
     relevant_attributes.each do |attribute|
       assert_includes(@option.keys, attribute)
