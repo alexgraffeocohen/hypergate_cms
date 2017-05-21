@@ -142,6 +142,23 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "only relevant attributes on skill check are present" do
+    skill_check = @option["skill_check"]
+
+    assert(skill_check, "Expected skill check to be present")
+
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[role description difficulty]
+
+    relevant_attributes.each do |attribute|
+      assert_includes(skill_check.keys, attribute)
+    end
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(skill_check.keys, attribute)
+    end
+  end
+
   test "success event on option present" do
     assert(@option["success_event"])
   end
