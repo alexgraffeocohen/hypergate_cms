@@ -4,6 +4,7 @@ class EventSerializer < ActiveModel::Serializer
   belongs_to :ship_module, key: :ship_module_reward
   belongs_to :item, key: :item_reward
   has_many :options
+  has_many :responses
 
   def title
     object.encounter.title

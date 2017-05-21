@@ -68,6 +68,25 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "responses on event are present" do
+    assert(@starting_event["responses"])
+  end
+
+  test "only relevant attributes on response are included" do
+    response = @starting_event["responses"].first
+
+    irrelevant_attributes = %w[created_at updated_at]
+    relevant_attributes = %w[id text role]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(response.keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(response.keys, attribute)
+    end
+  end
+
   test "ship module on event is included" do
     ship_module = @starting_event["ship_module_reward"]
 
