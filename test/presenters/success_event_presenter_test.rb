@@ -64,4 +64,16 @@ class SuccessSuccessEventPresenterTest < ActiveSupport::TestCase
 
     assert_equal 3, presenter.event_results.length
   end
+
+  test "next_encounters does not include event's encounter" do
+    event = events(:defeat_the_ai)
+    presenter = SuccessEventPresenter.new(
+      event: event,
+      option: @option
+    )
+
+    assert_not(
+      presenter.next_encounters.include?(event.encounter)
+    )
+  end
 end
