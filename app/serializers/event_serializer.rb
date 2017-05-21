@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description
+  attributes :id, :title, :description, :next_encounter_id
 
   belongs_to :ship_module, key: :ship_module_reward
   belongs_to :item, key: :item_reward

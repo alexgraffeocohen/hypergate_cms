@@ -57,7 +57,7 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
 
   test "only relevant event attributes are present" do
     irrelevant_attributes = %w[created_at updated_at]
-    relevant_attributes = %w[id title description]
+    relevant_attributes = %w[id title description next_encounter_id]
 
     irrelevant_attributes.each do |attribute|
       refute_includes(@starting_event.keys, attribute)
