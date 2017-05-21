@@ -80,4 +80,27 @@ class EventPresenterTest < ActiveSupport::TestCase
 
     assert_not(presenter.starting_event?)
   end
+
+  test "next_encounters does not include event's encounter" do
+    event = events(:defeat_the_ai)
+    presenter = EventPresenter.new(event)
+
+    assert_not(
+      presenter.next_encounters.include?(event.encounter)
+    )
+  end
+
+  test "next_encounters includes encounters" do
+    event = events(:defeat_the_ai)
+    presenter = EventPresenter.new(event)
+
+    assert_equal(
+      "Encounter",
+      presenter.
+      next_encounters.
+      map { |element| element.class.name }.
+      uniq.
+      first
+    )
+  end
 end

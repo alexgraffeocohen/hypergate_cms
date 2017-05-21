@@ -1,6 +1,7 @@
 <%= simple_form_for [@presenter.encounter, @presenter.event] do |f| %>
   <%= f.input :description, as: :text, input_html: { rows: 5 } %>
   <%= f.association :next_encounter,
+    collection: @presenter.next_encounters,
     label: "Next Encounter",
     hint: "The encounter this event leads to within a multi-encounter arc. Will reveal the encounter on the sector map." %>
 

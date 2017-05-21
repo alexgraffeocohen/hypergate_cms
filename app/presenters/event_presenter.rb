@@ -9,6 +9,10 @@ class EventPresenter
     event.encounter
   end
 
+  def next_encounters
+    Encounter.where.not(id: encounter.id)
+  end
+
   def responses
     [].tap do |array|
       array << event.responses.to_a
