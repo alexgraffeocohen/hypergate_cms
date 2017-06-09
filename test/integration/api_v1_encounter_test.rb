@@ -143,6 +143,14 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "only results with non-zero amounts are present" do
+    results = @starting_event["results"]
+
+    # real events always have three results; this one has two
+    assert_equal(1, results.count)
+    refute_includes(results.map { |result| result["amount"] }, 0)
+  end
+
   test "only relevant attributes on ship effect are present" do
     result = @starting_event["results"].first
     ship_effect = result["ship_effect"]

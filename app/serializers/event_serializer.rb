@@ -8,7 +8,9 @@ class EventSerializer < ActiveModel::Serializer
   belongs_to :next_encounter
   has_many :options
   has_many :responses
-  has_many :event_results, key: :results
+  has_many :event_results, key: :results do
+    object.event_results.where.not(amount: 0)
+  end
 
   def title
     object.encounter.title

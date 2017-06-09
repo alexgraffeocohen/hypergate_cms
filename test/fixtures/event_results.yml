@@ -14,3 +14,7 @@ landing_improves_sanity:
   event: land_on_ai_planet
   ship_effect: crew_sanity
   amount: 1
+land_on_ai_planet_crew_health:
+  event: land_on_ai_planet
+  ship_effect: crew_health
+  amount: 0
