@@ -10,4 +10,5 @@ class Encounter < ActiveRecord::Base
   validates_associated :starting_event
 
   scope :published, -> { where(published: true) }
+  scope :standalone, -> { where(standalone: true) }
 end

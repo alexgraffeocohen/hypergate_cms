@@ -4,7 +4,17 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
   def setup
     @published_encounter = encounters(:ai_planet)
     @published_encounter.published = true
+    @published_encounter.standalone = true
     @published_encounter.save
+
+    @unpublished_encounter = encounters(:no_events)
+    @unpublished_encounter.published = false
+    @unpublished_encounter.save
+
+    @non_standalone_encounter = encounters(:earth_like)
+    @non_standalone_encounter.standalone = false
+    @non_standalone_encounter.published = true
+    @non_standalone_encounter.save
 
     get "/api/v1/encounters/"
     assert_response :success
@@ -16,19 +26,26 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
   end
 
   test "only published encounters returned" do
-    unpublished_encounter = encounters(:no_events)
-
     published_encounter_in_response = @encounters.
       any? { |attributes|
       attributes["id"] == @published_encounter.id
     }
     unpublished_encounter_in_response = @encounters.
       any? { |attributes|
-      attributes["id"] == unpublished_encounter.id
+      attributes["id"] == @unpublished_encounter.id
     }
 
     assert(published_encounter_in_response)
     assert_not(unpublished_encounter_in_response)
+  end
+
+  test "only standalone, published encounters returned" do
+    unincluded_encounter_in_response = @encounters.
+      any? { |attributes|
+      attributes["id"] == @non_standalone_encounter.id
+    }
+
+    assert_not(unincluded_encounter_in_response)
   end
 
   test "only relevant encounter attributes are present" do
