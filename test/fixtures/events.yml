@@ -4,6 +4,7 @@ land_on_ai_planet:
   description: "We have to defeat the AI somehow."
   ship_module: engineering
   item: science
+  next_encounter: earth_like
 
 defeat_the_ai:
   encounter: ai_planet

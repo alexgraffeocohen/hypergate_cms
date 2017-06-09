@@ -78,7 +78,7 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
       id
       title
       description
-      next_encounter_id
+      next_encounter
       item_role_requirement
       ship_module_role_requirement
     ]
@@ -89,6 +89,19 @@ class ApiV1EncounterTest < ActionDispatch::IntegrationTest
 
     relevant_attributes.each do |attribute|
       assert_includes(@starting_event.keys, attribute)
+    end
+  end
+
+  test "next_encounter has valid attributes" do
+    irrelevant_attributes = %w[created_at updated_at published]
+    relevant_attributes = %w[id description standalone title]
+
+    irrelevant_attributes.each do |attribute|
+      refute_includes(@starting_event["next_encounter"].keys, attribute)
+    end
+
+    relevant_attributes.each do |attribute|
+      assert_includes(@starting_event["next_encounter"].keys, attribute)
     end
   end
 
