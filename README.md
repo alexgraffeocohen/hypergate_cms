@@ -6,4 +6,5 @@ content you see there, as my React Native app is actively pulling content from
 this app's API.
 
 Website: https://hypergate-cms.herokuapp.com
+
 App Repository: https://gitlab.com/alexwilkinson/long-road-home
