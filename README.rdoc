@@ -1,2 +1,0 @@
-API and content management system for stories featured in my in-develoment
-choose-your-own-adventure board game.
