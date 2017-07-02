@@ -21,6 +21,7 @@
             <li class="<%= 'active' if current_page?(encounters_path)%>"> <%= link_to("All Encounters", encounters_path) %></li>
             <li class="<%= 'active' if current_page?(new_encounter_path)%>"><%= link_to("New Encounter", new_encounter_path) %></li>
             <li class="<%= 'active' if current_page?('/wiki')%>"><%= link_to("Wiki", '/wiki') %></li>
+            <li class="<%= 'active' if current_page?(comfy_admin_cms_path)%>"><%= link_to("Wiki Admin", comfy_admin_cms_path) %></li>
           </ul>
         </div>
       </nav>
