@@ -19,6 +19,7 @@
           <ul class="nav navbar-nav">
             <li class="<%= 'active' if current_page?(encounters_path)%>"> <%= link_to("All Encounters", encounters_path) %></li>
             <li class="<%= 'active' if current_page?(new_encounter_path)%>"><%= link_to("New Encounter", new_encounter_path) %></li>
+            <li class="<%= 'active' if current_page?('/wiki')%>"><%= link_to("Wiki", '/wiki') %></li>
           </ul>
         </div>
       </nav>
