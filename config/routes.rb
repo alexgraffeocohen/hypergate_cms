@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
+  comfy_route :cms_admin, :path => '/wiki/admin'
+  # Make sure this routeset is defined last
+  comfy_route :cms, :path => '/', :sitemap => false
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
